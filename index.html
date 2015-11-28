@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8' />
+<link href='../fullcalendar.css' rel='stylesheet' />
+<link href='../fullcalendar.print.css' rel='stylesheet' media='print' />
+<script src='../lib/moment.min.js'></script>
+<script src='../lib/jquery.min.js'></script>
+<script src='../fullcalendar.min.js'></script>
+<script src="calendar.js"></script>
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<style>
+
+	body {
+		margin: 40px 10px;
+		padding: 0;
+		font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
+		font-size: 14px;
+	}
+
+	#calendar {
+		max-width: 900px;
+		margin: 0 auto;
+	}
+
+</style>
+</head>
+<body>
+	<div class="contianer row">
+		<div class="container col-sm-4">
+			<h1>Add Event</h1>
+			<form class="container">
+				<h2>Title</h2>
+					<label for="newTitle">Event Title:
+					<input id="newTitle">
+
+				
+				<div class="newStartDate">
+					<h2>Start</h2>
+					<div>
+						<label for="startMonth">Month: 
+						<input id="startMonth">
+					</div>
+					<div>
+						<label for="startDay">Day:
+						<input id="startDay">
+					</div>
+					<div>
+						<label for="startTime">Time:
+						<input type="datetime" id="startTime">
+					</div>
+				</div>
+				<div class="newEndDate">
+					<h2>End</h2>
+					<div>
+						<label for="endMonth">Month:
+						<input id="endMonth">
+					</div>
+					<div>
+						<label for="endDay">Day:
+						<input id="endDay">
+					</div>
+					<div>
+						<label for="endTime">Time:
+						<input id="endTime">
+					</div>
+				</div>
+				<div style="text-align:center">
+					<input type="submit" value="Add to Calendar">
+				</div>
+
+			</form>
+		</div>
+		<div class="container col-sm-8" id='calendar'></div>
+	</div>
+</body>
+</html>
