@@ -2,6 +2,7 @@
 <html>
 <head>
 <meta charset='utf-8' />
+
 <link href='fullcalendar-2.4.0/fullcalendar.css' rel='stylesheet' />
 <link href='fullcalendar-2.4.0/fullcalendar.print.css' rel='stylesheet' media='print' />
 <script src='fullcalendar-2.4.0/lib/moment.min.js'></script>
@@ -58,7 +59,27 @@
 
 			</form>
 		</div>
+		<button onClick="">List View</button>
 		<div class="container col-sm-8" id='calendar'></div>
+	</div>
+
+	<div class="col-sm-4"></div>
+	<div class="container col-sm-8">
+		<table style="width:100%">
+			<tr>
+				<th>Title</th>
+				<th>Date</th>
+				<th>Location</th>
+				<th>Description</th>
+			</tr>
+			<tr>
+				<td>event title</td>
+				<td>date and time</td>
+				<td>location</td>
+				<td>description</td>
+				<!--these should all be made using an ng-repeat directive for all the data that is stored in firebase-->
+			</tr>
+		</table>
 	</div>
 </body>
 </html>
