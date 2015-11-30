@@ -48,3 +48,26 @@ $(document).ready(function() {
 	});
 		
 });
+
+// Create application with dependency 'firebase'
+var myApp = angular.module('myApp', ['firebase'])
+myApp.controller('myCtrl', function($scope, $firebaseAuth, $firebaseArray, $firebaseObject) {
+	var ref = new Firebase('https://intercalendar.firebaseio.com/');
+	var eventRef = ref.child("events");
+
+	$scope.events = $firebaseArray(eventRef);
+
+	$scope.addEvent = function() {
+		$scope.events.$add({
+			eventTitle:$scope.eventTitle,
+			startMonth:$scope.SMonth,
+			startDay:$scope.Sday,
+			startTime:$scope.STime,
+			endMonth:$scope.EMonth,
+			endDay:$scope.EDay,
+			endTime:$scope.ETime
+		}).then(function() {
+			$scope.events.$save()
+		})
+	}
+}

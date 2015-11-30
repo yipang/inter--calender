@@ -3,58 +3,74 @@
 <head>
 <meta charset='utf-8' />
 
-<link href='fullcalendar-2.4.0/fullcalendar.css' rel='stylesheet' />
-<link href='fullcalendar-2.4.0/fullcalendar.print.css' rel='stylesheet' media='print' />
-<script src='fullcalendar-2.4.0/lib/moment.min.js'></script>
-<script src='fullcalendar-2.4.0/lib/jquery.min.js'></script>
-<script src='fullcalendar-2.4.0/fullcalendar.min.js'></script>
-<script src="calendar.js"></script>
-<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-<script src="main.css"></script>
+	<link href='fullcalendar-2.4.0/fullcalendar.css' rel='stylesheet' />
+	<link href='fullcalendar-2.4.0/fullcalendar.print.css' rel='stylesheet' media='print' />
+	<script src='fullcalendar-2.4.0/lib/moment.min.js'></script>
+	<script src='fullcalendar-2.4.0/lib/jquery.min.js'></script>
+	<script src='fullcalendar-2.4.0/fullcalendar.min.js'></script>
+	<script src="calendar.js"></script>
+
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	
+	<!-- Angular -->
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
+
+	<!-- Firebase -->
+	<script src="https://cdn.firebase.com/js/client/2.2.4/firebase.js"></script>
+
+	<!-- AngularFire -->
+	<script src="https://cdn.firebase.com/libs/angularfire/1.1.3/angularfire.min.js"></script>
+
+ 	<!-- Styles -->
+	<script src="main.css"></script>
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
 </head>
-<body>
+
+<body ng-app="myApp" ng-controller="myCtrl">
 	<div class="container row">
 		<div class="container col-sm-4">
 			<h1>Add Event</h1>
-			<form>
+			<form name="myForm" novalidata>
 				<h2>Title</h2>
-					<label for="newTitle">Event Title:
-					<input id="newTitle">
+				<div class="form-group">
+					<label for="newTitle">Event Title:</label>
+					<input ng-model="eventTitle" name="eventTitle" class="form-control" id="newTitle">
+				</div>
 
 				
 				<div class="newStartDate">
 					<h2>Start</h2>
-					<div>
-						<label for="startMonth">Month: 
-						<input id="startMonth">
+					<div class="form-group">
+						<label for="startMonth">Month: </label>
+						<input ng-model="SMonth" name="SMonth" class="form-control" id="startMonth">
 					</div>
-					<div>
-						<label for="startDay">Day:
-						<input id="startDay">
+					<div class="form-group">
+						<label for="startDay">Day:</label>
+						<input ng-model="SDay" name="SDay" class="form-control" id="startDay">
 					</div>
-					<div>
-						<label for="startTime">Time:
-						<input type="datetime" id="startTime">
+					<div class="form-group">
+						<label for="startTime">Time:</label>
+						<input ng-model="STime" name="STime" class="form-control" type="datetime" id="startTime">
 					</div>
 				</div>
 				<div class="newEndDate">
 					<h2>End</h2>
-					<div>
-						<label for="endMonth">Month:
-						<input id="endMonth">
+					<div class="form-group">
+						<label for="endMonth">Month:</label>
+						<input ng-model="EMonth" name="EMonth" class="form-control" id="endMonth">
 					</div>
-					<div>
-						<label for="endDay">Day:
-						<input id="endDay">
+					<div class="form-group">
+						<label for="endDay">Day:</label>
+						<input ng-model="EDay" name="EDay" class="form-control" id="endDay">
 					</div>
-					<div>
-						<label for="endTime">Time:
-						<input id="endTime">
+					<div class="form-group">
+						<label for="endTime">Time:</label>
+						<input ng-model="ETime" name="ETime" class="form-control" id="endTime">
 					</div>
 				</div>
-				<div style="text-align:center">
-					<input type="submit" value="Add to Calendar" class="submitAddEvent">
+				<div>
+					<button ng-click="addEvent()" type="submit" class="btn btn-primary">Add Event</button>
 				</div>
 
 			</form>
@@ -72,9 +88,9 @@
 				<th>Location</th>
 				<th>Description</th>
 			</tr>
-			<tr>
-				<td>event title</td>
-				<td>date and time</td>
+			<tr ng-repeat="e in events">
+				<td>{{e.eventTitle}}</td>
+				<td>{{e.startTime}}</td>
 				<td>location</td>
 				<td>description</td>
 				<!--these should all be made using an ng-repeat directive for all the data that is stored in firebase-->
