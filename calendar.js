@@ -52,19 +52,18 @@ $(document).ready(function() {
 // Create application with dependency 'firebase'
 
 var myApp = angular.module('myApp', ['firebase'])
-//myApp.controller('myCtrl', function($scope, $firebaseAuth, $firebaseArray, $firebaseObject) {
-// 	var ref = new Firebase('https://intercalendar.firebaseio.com/');
-// 	var eventRef = ref.child("events");
+myApp.controller('myCtrl', function($scope, $firebaseAuth, $firebaseArray, $firebaseObject) {
+ 	var ref = new Firebase('https://intercalendar.firebaseio.com/');
+ 	var eventRef = ref.child("events");
+ 	$scope.events = $firebaseArray(eventRef);
 
-// 	$scope.events = $firebaseArray(eventRef);
-
-// 	$scope.addEvent = function() {
-// 		$scope.events.$add({
-// 			eventTitle:$scope.eventTitle,
-// 			startTime:$scope.STime,
-// 			endTime:$scope.ETime
-// 		}).then(function() {
-// 			$scope.events.$save()
-// 		})
-// 	}
-// }
+ 	$scope.addEvent = function() {
+ 		$scope.events.$add({
+ 			eventTitle:$scope.eventTitle,
+ 			startTime:$scope.STime,
+ 			endTime:$scope.ETime
+ 		}).then(function() {
+ 			$scope.events.$save()
+ 		})
+ 	}
+ })
