@@ -41,32 +41,19 @@
 				
 				<div class="newStartDate">
 					<h2>Start</h2>
-					<div class="form-group">
-						<label for="startMonth">Month: </label>
-						<input ng-model="SMonth" name="SMonth" class="form-control" id="startMonth">
-					</div>
-					<div class="form-group">
-						<label for="startDay">Day:</label>
-						<input ng-model="SDay" name="SDay" class="form-control" id="startDay">
-					</div>
-					<div class="form-group">
-						<label for="startTime">Time:</label>
-						<input ng-model="STime" name="STime" class="form-control" type="datetime" id="startTime">
+
+					<div class="container">
+					    <label for="startTime">Start Date and Time</label>
+					    <input type="datetime-local" id="startTime"></input>
 					</div>
 				</div>
+
+
 				<div class="newEndDate">
 					<h2>End</h2>
-					<div class="form-group">
-						<label for="endMonth">Month:</label>
-						<input ng-model="EMonth" name="EMonth" class="form-control" id="endMonth">
-					</div>
-					<div class="form-group">
-						<label for="endDay">Day:</label>
-						<input ng-model="EDay" name="EDay" class="form-control" id="endDay">
-					</div>
-					<div class="form-group">
-						<label for="endTime">Time:</label>
-						<input ng-model="ETime" name="ETime" class="form-control" id="endTime">
+					<div class="container">
+					    <label for="endTime">End Date and Time</label>
+					    <input type="datetime-local" id="endTime"></input>
 					</div>
 				</div>
 				<div>
