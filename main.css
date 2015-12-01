@@ -1,12 +1,158 @@
-body {
-	margin: 40px 10px;
-	padding: 0;
-	font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
-	font-size: 14px;
-}
+/* NOTE: Most design details such as colors and sizing are pulled from the iSchool's website. */
 
-#calendar {
-	max-width: 900px;
-	margin: 0 auto;
-}
+/* IMPORTING FONTS: */
 
+	@import url("https://fonts.googleapis.com/css?family=Oxygen:400,700");
+	@import url("https://fonts.googleapis.com/css?family=Oswald:400,700");
+
+/* SMALLEST SCREENS: */
+
+	/* BODY DEFAULTS: */
+
+		body {
+			background-image: url("img/backdrop.png");
+			font-family: "Lucida Grande", Helvetica, Arial, Verdana, sans-serif;
+			font-size: 14px;
+		}
+
+		h1 {
+			font-family: "Oswald", sans-serif;
+			font-weight: 400;
+			text-align: center;
+		}
+
+	/* TITLE: */
+
+		#title-div {
+			background-color: #4B2E83;
+			margin-left: auto;
+			margin-right: auto;
+			padding: 20px;
+			max-width: 1020px;
+		}
+
+		#title-div h1 {
+			color: #FFFFFF;
+		}
+
+	/* VIEW-SWITCHER */
+
+		#view-switcher {
+			margin-left: auto;
+			margin-right: auto;
+			max-width: 1020px;
+		}
+
+		#view-switcher ul {
+			padding: 0px;
+		}
+
+		.switch-button {
+			display: block;
+			font-family: "Oswald", sans-serif;
+			font-size: 20px;
+			margin-top: 0px;
+			margin-bottom: 0px;
+			text-align: center;
+		}
+
+		.switch-button a {
+			background-color: #FFFFFF;
+			border: solid 20px;
+			border-color: #4B2E83;
+			border-width: 10px;
+			color: #000000;
+			display: block;
+			padding: 10px;
+			transition: background-color 1s;
+		}
+
+		.switch-button a:hover {
+			background-color: #4B2E83;
+			color: #FFFFFF;
+			text-decoration: none;
+		}
+
+	/* CONTENT FRAME: */
+
+		#content-frame {
+			background-color: #4B2E83;
+			margin-left: auto;
+			margin-right: auto;
+			padding: 10px;
+			max-width: 1020px;
+		}
+
+		#primary-content {
+			background-color: #FFFFFF;
+			margin-left: auto;
+			margin-right: auto;
+			padding: 20px;
+		}
+
+	/* CALENDAR: */
+
+		#calendar {
+			max-width: 900px;
+			margin: 20px auto;
+		}
+
+/* SMALL SCREENS: */
+
+	@media screen and (min-width: 500px) {
+
+		/* TITLE: */
+
+			#title-div {
+				margin-top: 20px;
+				margin-bottom: 20px;
+				padding: 20px;
+				box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
+			}
+
+		/* VIEW-SWITCHER: */
+
+			.switch-button {
+				margin-top: 20px;
+				margin-bottom: 20px;
+				box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
+			}
+
+		/* CONTENT FRAME: */
+
+			#content-frame {
+				background-color: #4B2E83;
+				margin-left: auto;
+				margin-right: auto;
+				margin-top: 20px;
+				margin-bottom: 20px;
+				padding: 10px;
+				max-width: 1020px;
+				box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
+			}
+
+	}
+
+/* MEDIUM SCREENS: */
+
+	@media screen and (min-width: 900px) {
+
+		/* TITLE: */
+
+			#title-div {
+				margin-top: 0px;
+			}
+
+	}
+
+/* LARGE SCREENS: */
+
+	@media screen and (min-width: 1020px) {
+
+		/* TITLE: */
+
+			#title-div {
+				margin-top: 20px;
+			}
+
+	}

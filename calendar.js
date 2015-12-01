@@ -6,7 +6,7 @@ $(document).ready(function() {
 			center: 'title',
 			right: 'month,agendaWeek,agendaDay'
 		},
-		businessHours: false, // does not emphasize busniness hours
+		businessHours: false, // does not emphasize business hours
 		editable: true, //editable.  NEED TO CHANGE TO TRUE WHEN ORG LOGS IN
 		events: [
 			{
