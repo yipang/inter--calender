@@ -1,5 +1,13 @@
+var myApp = angular.module('myApp', []);
+
 $(document).ready(function() {
 
+	// In theory, gets calendar.json data; displays in #calendar.
+	$('#calendar').fullCalendar({
+    	events: "data/calendar.json"
+	});
+
+	/*
 	$('#calendar').fullCalendar({
 		header: {
 			left: 'prev,next today',
@@ -46,27 +54,32 @@ $(document).ready(function() {
 			}
 		]
 	});
+	*/
 		
 });
 
-// Create application with dependency 'firebase'
-var events;
-var myApp = angular.module('myApp', ['firebase'])
-var myCtrl = myApp.controller('myCtrl', function($scope, $firebaseAuth, $firebaseArray, $firebaseObject) {
- 	var ref = new Firebase('https://intercalendar.firebaseio.com/');
- 	var eventRef = ref.child("events");
- 	$scope.events = $firebaseArray(eventRef);
+// Upon clicking "Add Event," addEvent.
+var addEvent = function() {
 
- 	$scope.addEvent = function() {
- 		alert("adding event");
- 		alert($scope.eventTitle);
- 		alert($scope.events);
- 		$scope.events.$add({
- 			eventTitle:$scope.eventTitle,
- 			startTime:$scope.STime,
- 			endTime:$scope.ETime
- 		}).then(function() {
- 			$scope.events.$save()
- 		})
- 	}
- })
+	var eventTitle = $("newTitle").val();
+	var startTime = $("startTime").val();
+	var endTime = $("endTime").val();
+
+	// Somewhere here, validate that the info is good (properly formatted).
+
+}
+
+
+/* CONTROLLER (if needed).
+myApp.controller("calendarController", function($scope, $http) {
+	$http.get("data/events.json").then(function(response) {
+		$scope.events = response.data;
+		showEvents(events);
+	})
+});
+
+// Reads events.json; 
+var showEvents = function(events) {
+
+}
+*/
