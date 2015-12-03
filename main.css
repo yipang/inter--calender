@@ -23,8 +23,9 @@
 
 	/* TITLE: */
 
-		#title-div {
+		#title-div, #button-div {
 			background-color: #4B2E83;
+			color: #FFFFFF;
 			margin-left: auto;
 			margin-right: auto;
 			padding: 20px;
@@ -33,6 +34,26 @@
 
 		#title-div h1 {
 			color: #FFFFFF;
+		}
+
+	/* LOGIN DIV: */
+
+		.button-div {
+			padding: 20px;
+		}
+
+		.button-div a {
+			color: #FFFFFF;
+			display: block;
+			font-family: "Oswald", sans-serif;
+			font-size: 20px;
+			text-align: center;
+			transition: color 1s;
+		}
+
+		.button-div a:hover {
+			color: #FFDD3D;
+			text-decoration: none;
 		}
 
 	/* VIEW-SWITCHER */
