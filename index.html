@@ -57,12 +57,12 @@
 		<div id="view-switcher">
 			<ul>
 				<li class="switch-button">
-					<a onClick="">
+					<a href="#calendar" onClick="">
 						Calendar View
 					</a>
 				</li>
 				<li class="switch-button">
-					<a onClick="">
+					<a href="#calendar" onClick="">
 						List View
 					</a>
 				</li>
@@ -141,12 +141,10 @@
 			</div>
 
 			<div class="button-div">
-				<a href="" />Add Event</a>
+				<a ui-sref="addevent" />Add Event</a>
 			</div>
 
-			<div>
-
-			</div>
+			<div ui-view></div>
 
 			<div class="button-div">
 				<a href="login.html">

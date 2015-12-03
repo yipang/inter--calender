@@ -1,4 +1,20 @@
-var myApp = angular.module('myApp', []);
+var myApp = angular.module('myApp', ["ui.router"]);
+
+
+myApp.config(function(#stateProvider) {
+	$stateProvider
+	.state ( "addevent",
+		url: "addevent",
+		templateUrl: "addEvent.html"
+		controller: "eventController"
+	)
+
+});
+
+myApp.controller("eventController", function($scope) {
+
+});
+
 
 $(document).ready(function() {
 
