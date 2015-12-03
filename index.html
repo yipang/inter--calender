@@ -6,7 +6,7 @@
 
 		<!-- Placeholder title. I dunno the actual title. -->
 		<title>
-			The iSchool Inter-Calendar
+			The iSchool Calendar
 		</title>
 
 		<!-- Setting the shortcut icon (the icon you'll see in the URL bar and title bar). -->
@@ -25,26 +25,26 @@
 		<script src="fullcalendar-2.4.0/lib/jquery.min.js"></script>
 		<script src="fullcalendar-2.4.0/fullcalendar.min.js"></script>
 		
-		<!-- Bootstrap -->
+		<!-- Bootstrap. -->
 		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 		
-		<!-- Angular -->
+		<!-- Angular. -->
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
 
-		<!-- Firebase -->
+		<!-- Firebase. -->
 		<script src="https://cdn.firebase.com/js/client/2.2.4/firebase.js"></script>
 
-		<!-- AngularFire -->
+		<!-- AngularFire. -->
 		<script src="https://cdn.firebase.com/libs/angularfire/1.1.3/angularfire.min.js"></script>
 
-	 	<!-- Styles -->
+	 	<!-- JavaScript & stylesheet. -->
 	 	<script src="calendar.js"></script>
 		<link rel="stylesheet" href="main.css"></link>
 
 	</head>
 
-	<body ng-app="myApp" ng-controller="calendarController">
+	<body ng-app="iSchoolCalendar" ng-controller="calendarController">
 
 		<!-- Title. -->
 		<div id="title-div">
@@ -87,7 +87,7 @@
 					<!-- add-event-div: Add event form. Automatically hidden. -->
 					<div id="add-event-div">
 
-						<div class="container col-sm-4">
+						<div class="container col-sm-6">
 
 							<h2>
 								Add Event
@@ -134,16 +134,20 @@
 
 			</div>
 
-			<!-- Unhides event form onclick. -->
-			<div class="button-div">
-				<a href="#add-event-div" onclick="revealEventForm()" />Add Event</a>
-			</div>
+			<!-- user-buttons id primarily used for the Add Event's href; removing said href
+			would make the element not appear selectable on mouse-over. -->
+			<div id="user-buttons">
+				<!-- Unhides event form onclick. -->
+				<div class="button-div">
+					<a href="#" onclick="revealEventForm()" />Add Event</a>
+				</div>
 
-			<!-- Redirects to login.html. -->
-			<div class="button-div">
-				<a href="login.html">
-					Login
-				</a>
+				<!-- Redirects to login.html. -->
+				<div class="button-div">
+					<a href="login.html">
+						Login
+					</a>
+				</div>
 			</div>
 
 		</div>
