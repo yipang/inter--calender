@@ -46,6 +46,7 @@
 
 	<body ng-app="myApp" ng-controller="calendarController">
 
+		<!-- Title. -->
 		<div id="title-div">
 
 			<h1>
@@ -54,7 +55,9 @@
 
 		</div>
 
+		<!-- Buttons that switch the calendar view from list and from calendar format. -->
 		<div id="view-switcher">
+
 			<ul>
 				<li class="switch-button">
 					<a href="#calendar" onClick="">
@@ -67,6 +70,7 @@
 					</a>
 				</li>
 			</ul>
+
 		</div>
 
 		<!-- content-frame: Purple frame wrapping around primary content. -->
@@ -77,45 +81,51 @@
 
 				<div class="container row">
 
-					<div class="container col-sm-12" id='calendar'></div>
+					<!-- CALENDAR. -->
+					<div class="container col-sm-12" id="calendar"></div>
 
-					<!-- Event form. -->
+					<!-- add-event-div: Add event form. Automatically hidden. -->
 					<div id="add-event-div">
 
 						<div class="container col-sm-4">
-							<h2>Add Event</h2>
+
+							<h2>
+								Add Event
+							</h2>
+
 							<form name="myForm" novalidata>
-							<h3>Title</h3>
-							<div class="form-group">
-								<label for="newTitle">Event Title:</label>
-								<input ng-model="eventTitle" name="eventTitle" id="newTitle">
-							</div>
 
-													
-						    <div class="newStartDate">
-								<h3>Start</h3>
+								<div class="form-group">
+									<label for="newTitle">Event Title</label>
+									<br />
+									<input ng-model="eventTitle" name="eventTitle" id="newTitle" 
+										placeholder="Your event's title."></input>
+								</div>
 
-								<div class="container">
+														
+							    <div class="newStartDate">
 									<label for="startTime">Start Date and Time</label>
-									<input type="datetime-local" id="startTime"></input>
+									<br />
+									<input type="datetime-local" id="startTime" 
+										placeholder="When does it start?"></input>
 								</div>
-							</div>
 
 
-							<div class="newEndDate">
-								<h3>End</h3>
-								<div class="container">
+								<div class="newEndDate">
 									<label for="endTime">End Date and Time</label>
-									<input type="datetime-local" id="endTime"></input>
+									<br />
+									<input type="datetime-local" id="endTime" 
+										placeholder="When does it end?"></input>
 								</div>
-							</div>
-							<div>
-								<button type="submit" class="btn btn-primary">
-									Add Event
-								</button>
-							</div>
+
+								<div>
+									<button type="submit" onclick="addEvent">
+										Submit
+									</button>
+								</div>
 
 							</form>
+
 						</div>
 
 					</div>
@@ -124,10 +134,12 @@
 
 			</div>
 
+			<!-- Unhides event form onclick. -->
 			<div class="button-div">
 				<a href="#add-event-div" onclick="revealEventForm()" />Add Event</a>
 			</div>
 
+			<!-- Redirects to login.html. -->
 			<div class="button-div">
 				<a href="login.html">
 					Login

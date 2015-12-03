@@ -62,7 +62,9 @@ $(document).ready(function() {
 });
 
 var revealEventForm = function() {
+
 	$("#add-event-div").show();
+
 }
 
 // Upon clicking "Add Event," addEvent.
@@ -75,18 +77,3 @@ var addEvent = function() {
 	// Somewhere here, validate that the info is good (properly formatted).
 
 }
-
-
-/* CONTROLLER (if needed).
-myApp.controller("calendarController", function($scope, $http) {
-	$http.get("data/events.json").then(function(response) {
-		$scope.events = response.data;
-		showEvents(events);
-	})
-});
-
-// Reads events.json; 
-var showEvents = function(events) {
-
-}
-*/
