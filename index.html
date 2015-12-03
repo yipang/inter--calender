@@ -79,22 +79,25 @@
 
 					<div class="container col-sm-12" id='calendar'></div>
 
-					<div class="container col-sm-4">
-						<h2>Add Event</h2>
-						<form name="myForm" novalidata>
+					<!-- Event form. -->
+					<div id="add-event-div">
+
+						<div class="container col-sm-4">
+							<h2>Add Event</h2>
+							<form name="myForm" novalidata>
 							<h3>Title</h3>
 							<div class="form-group">
 								<label for="newTitle">Event Title:</label>
-								<input ng-model="eventTitle" name="eventTitle" class="form-control" id="newTitle">
+								<input ng-model="eventTitle" name="eventTitle" id="newTitle">
 							</div>
 
-							
-							<div class="newStartDate">
+													
+						    <div class="newStartDate">
 								<h3>Start</h3>
 
 								<div class="container">
-								    <label for="startTime">Start Date and Time</label>
-								    <input type="datetime-local" id="startTime"></input>
+									<label for="startTime">Start Date and Time</label>
+									<input type="datetime-local" id="startTime"></input>
 								</div>
 							</div>
 
@@ -102,49 +105,28 @@
 							<div class="newEndDate">
 								<h3>End</h3>
 								<div class="container">
-								    <label for="endTime">End Date and Time</label>
-								    <input type="datetime-local" id="endTime"></input>
+									<label for="endTime">End Date and Time</label>
+									<input type="datetime-local" id="endTime"></input>
 								</div>
 							</div>
 							<div>
-								<button ng-click="addEvent()" type="submit" class="btn btn-primary">
-									Add Event</button>
+								<button type="submit" class="btn btn-primary">
+									Add Event
+								</button>
 							</div>
 
-						</form>
+							</form>
+						</div>
+
 					</div>
 
 				</div>
 
-				<div class="col-sm-4"></div>
-
-				<!--
-				<div class="container col-sm-8">
-					<table style="width:100%">
-						<tr>
-							<th>Title</th>
-							<th>Date</th>
-							<th>Location</th>
-							<th>Description</th>
-						</tr>
-						<tr ng-repeat="e in events">
-							<td>{{e.eventTitle}}</td>
-							<td>{{e.startTime}}</td>
-							<td>location</td>
-							<td>description</td>
-						</tr>
-					</table>
-				</div>
-				-->
-
-
 			</div>
 
 			<div class="button-div">
-				<a ui-sref="addevent" />Add Event</a>
+				<a href="#add-event-div" onclick="revealEventForm()" />Add Event</a>
 			</div>
-
-			<div ui-view></div>
 
 			<div class="button-div">
 				<a href="login.html">

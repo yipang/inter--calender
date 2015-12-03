@@ -1,22 +1,9 @@
-var myApp = angular.module('myApp', ["ui.router"]);
-
-
-myApp.config(function(#stateProvider) {
-	$stateProvider
-	.state ( "addevent",
-		url: "addevent",
-		templateUrl: "addEvent.html"
-		controller: "eventController"
-	)
-
-});
-
-myApp.controller("eventController", function($scope) {
-
-});
+var myApp = angular.module('myApp', []);
 
 
 $(document).ready(function() {
+
+	$("#add-event-div").hide();
 
 	// In theory, gets calendar.json data; displays in #calendar.
 	$('#calendar').fullCalendar({
@@ -73,6 +60,10 @@ $(document).ready(function() {
 	*/
 		
 });
+
+var revealEventForm = function() {
+	$("#add-event-div").show();
+}
 
 // Upon clicking "Add Event," addEvent.
 var addEvent = function() {
