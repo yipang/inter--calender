@@ -28,15 +28,13 @@
 		<!-- Bootstrap. -->
 		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 		
 		<!-- Angular. -->
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
 
-		<!-- Firebase. -->
-		<script src="https://cdn.firebase.com/js/client/2.2.4/firebase.js"></script>
-
-		<!-- AngularFire. -->
-		<script src="https://cdn.firebase.com/libs/angularfire/1.1.3/angularfire.min.js"></script>
+		<!-- Parse. -->
+		<script src="//www.parsecdn.com/js/parse-1.6.0.min.js"></script>
 
 	 	<!-- JavaScript & stylesheet. -->
 	 	<script src="calendar.js"></script>
@@ -44,7 +42,7 @@
 
 	</head>
 
-	<body ng-app="iSchoolCalendar" ng-controller="calendarController">
+	<body ng-app="iSchoolCalendar">
 
 		<!-- Title. -->
 		<div id="title-div">
@@ -119,7 +117,7 @@
 								</div>
 
 								<div>
-									<button type="submit" onclick="addEvent">
+									<button type="submit" onclick="submitEvent()">
 										Submit
 									</button>
 								</div>
@@ -130,24 +128,69 @@
 
 					</div>
 
+					<!-- login-div: Sign up or sign in here. -->
+					<div id="login-div" class="container col-sm-6">
+
+						<h2>
+		                    Sign In
+		                </h2>
+
+		                <form class="form-signin">
+
+		                    <div class="form-group">
+		                        <label for="inputEmail">User</label>
+		                        <br />
+		                        <input type="email" id="inputEmail" 
+		                            placeholder="Your email." required />
+		                    </div>
+
+		                    <div class="form-group">
+		                        <label for="inputPassword">Password</label>
+		                        <br />
+		                        <input type="password" id="inputPassword" 
+		                            placeholder="Your password." ng-model="password" required />
+		                    </div>
+
+		                    <!-- Submit buttons: should only be active if certain inputs are valid -->
+		                    <div class="form-group">
+		                        <button type="submit">
+		                            Sign Up
+		                            <span class="fa fa-refresh fa-spin spinner"></span>
+		                        </button>
+		                    </div>
+
+		                    <div class="form-group">
+		                        <button type="submit">
+		                            Sign In
+		                            <span class="fa fa-refresh fa-spin spinner"></span>
+		                        </button>
+		                    </div>
+
+		                </form>
+
+					</div>
+
 				</div>
 
 			</div>
 
-			<!-- user-buttons id primarily used for the Add Event's href; removing said href
-			would make the element not appear selectable on mouse-over. -->
+			<!-- These buttons toggle user forms. -->
 			<div id="user-buttons">
+
 				<!-- Unhides event form onclick. -->
 				<div class="button-div">
-					<a href="#" onclick="revealEventForm()" />Add Event</a>
-				</div>
-
-				<!-- Redirects to login.html. -->
-				<div class="button-div">
-					<a href="login.html">
-						Login
+					<a href="#" onclick="revealEventForm()">
+						Add Event
 					</a>
 				</div>
+
+				<!-- Unhides login form onclick. -->
+				<div class="button-div">
+					<a href="#" onclick="revealLoginForm()">
+						Sign Up or Log In
+					</a>
+				</div>
+
 			</div>
 
 		</div>

@@ -1,36 +1,78 @@
 var iSchoolCalendar = angular.module("iSchoolCalendar", []);
 
+// Initializing Parse.
+Parse.initialize("CIawsCOoro1K3GHQq4teHxwzDyRjE8MuUXauh4Sm", "Mrrvv6XeBDSA6kkWWSBzkmnjDeHNh406gn5INWaB");
+
+var Event = Parse.Object.extend("Event");
+var User = Parse.Object.extend("User");
+
 $(document).ready(function() {
 
 	console.log("Document ready.");
 
-	// add-event-div is initially hidden. Only admin needs to use it.
+	// add-event-div and login-div are both initially hidden.
 	$("#add-event-div").hide();
+	$("#login-div").hide();
 	console.log("Add Event <div> hidden.");
 
-	// Initialize calendar.
+	// Initializing fullCalendar.
 	$("#calendar").fullCalendar({
 		header: {
 			left: 'prev,next today',
 			center: 'title',
 			right: 'month,agendaWeek,agendaDay'
 		},
-		businessHours: false, // does not emphasize business hours
-		editable: true, //editable.  NEED TO CHANGE TO TRUE WHEN ORG LOGS IN
+		businessHours: false,
+		editable: false
 	});
-	console.log("Calendar initialized.");
 
-	fillCalendar();
+	$("#calendar").hide();
+
+	getEvents();
+
+	$("#calendar").show();
 		
 });
 
-// Fills the calendar with events grabbed from calendar.json.
-var fillCalendar = function() {
+var signUp = function() {
+	
+}
 
-	$("#calendar").fullCalendar({
-    	events: "data/calendar.json"
+// Empties calendar; queries Parse for events.
+var getEvents = function() {
+
+	$("#calendar").fullCalendar("removeEvents");
+	var query = new Parse.Query(Event);
+	query.find({
+		success:function(results) {
+			addEvents(results);
+		}
 	});
-	console.log("Calendar filled.");
+
+}
+
+// Loops through acquired events and adds events individually.
+var addEvents = function(data) {
+
+	for (i in data) {
+		addEvent(data[i]);
+	}
+
+}
+
+// Adds an event to the calendar.
+var addEvent = function(event) {
+	var eventTitle = event.get("eventTitle");
+	var startTime = event.get("startTime");
+	var endTime = event.get("endTime");
+
+	var theEvent = {
+		title: eventTitle,
+		start: startTime,
+		end: endTime
+	};
+
+	$("#calendar").fullCalendar("renderEvent", theEvent, true);
 
 }
 
@@ -41,74 +83,35 @@ var revealEventForm = function() {
 
 }
 
-// Upon clicking "Add Event," addEvent.
-var addEvent = function() {
+// Fades in the login form.
+var revealLoginForm = function() {
 
-	var eventTitle = $("newTitle").val();
-	var startTime = $("startTime").val();
-	var endTime = $("endTime").val();
-	console.log("EVENT TITLE: " + eventTitle + ". START: " + endTime + ". END: " + endTime);
-
-	// Somewhere here, validate that the info is good (properly formatted).
-
-	// Somewhere here, hawk valid data to node.js; have node.js append it to calendar.json.
-
-	// Else, reject input.
-
-	// Calendar is refilled with new events.
-	fillCalendar();
+	$("#login-div").fadeIn(1000);
 
 }
 
+// Upon clicking "Add Event," addEvent.
+var submitEvent = function() {
 
-/*
+	var eventTitle = $("#newTitle").val();
+	var startTime = $("#startTime").val();
+	var endTime = $("#endTime").val();
 
-MANUAL EVENT INPUT:
-
-$('#calendar').fullCalendar({
-	header: {
-		left: 'prev,next today',
-		center: 'title',
-		right: 'month,agendaWeek,agendaDay'
-	},
-	businessHours: false, // does not emphasize business hours
-	editable: true, //editable.  NEED TO CHANGE TO TRUE WHEN ORG LOGS IN
-	events: [
-		{
-			title: 'Business Lunch',
-			start: '2015-11-20T13:00:00',
-			constraint: 'businessHours'
+	var anEvent = new Event();
+	anEvent.set("eventTitle", eventTitle);
+	anEvent.set("startTime", startTime);
+	anEvent.set("endTime", endTime);
+	anEvent.save(null, {
+		success: function(anEvent) {
+			$("#newTitle").empty();
+			$("#startTime").empty();
+			$("#endTime").empty();
 		},
-		{
-			title: 'Meeting',
-			start: '2015-11-13T11:00:00',
-			constraint: 'availableForMeeting', // defined below
-			color: '#257e4a'
-		},
-		{
-			title: 'Conference',
-			start: '2015-11-18',
-			end: '2015-02-20'
-		},
-		{
-			title: 'Party',
-			start: '2015-11-29T20:00:00'
-		},
-			// red areas where no events can be dropped
-		{
-			start: '2015-11-24',
-			end: '2015-02-28',
-			overlap: false,
-			rendering: 'background',
-			color: '#ff9f89'
-		},
-		{
-			start: '2015-11-06',
-			end: '2015-02-08',
-			overlap: false,
-			rendering: 'background',
-			color: '#ff9f89'
+		error: function(anEvent, error) {
+			alert("ERROR: " + error.message);
 		}
-	]
-});
-*/
+	});
+
+	getEvents();
+
+}
