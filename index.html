@@ -58,12 +58,12 @@
 
 			<ul>
 				<li class="switch-button">
-					<a href="#calendar" onClick="">
+					<a href="#calendar" onClick="showCalendar()">
 						Calendar View
 					</a>
 				</li>
 				<li class="switch-button">
-					<a href="#calendar" onClick="">
+					<a href="#calendar" onClick="showList()">
 						List View
 					</a>
 				</li>
@@ -81,6 +81,11 @@
 
 					<!-- CALENDAR. -->
 					<div class="container col-sm-12" id="calendar"></div>
+					
+					<!-- LIST VIEW. -->
+					<div id="listView" class="container col-sm-12">
+						<ul id="eventList"></ul>
+					</div>
 
 					<!-- add-event-div: Add event form. Automatically hidden. -->
 					<div id="add-event-div">
@@ -114,6 +119,13 @@
 									<br />
 									<input type="datetime-local" id="endTime" 
 										placeholder="When does it end?"></input>
+								</div>
+
+								<div class="eventDescription">
+									<label for="eventDesc">End Date and Time</label>
+									<br />
+									<input type="text" id="eventDesc" 
+										placeholder="More detailed about this Event"></input>
 								</div>
 
 								<div>

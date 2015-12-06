@@ -7,7 +7,7 @@ var Event = Parse.Object.extend("Event");
 var User = Parse.Object.extend("User");
 
 $(document).ready(function() {
-
+    $("#listView").hide();
 	console.log("Document ready.");
 
 	// add-event-div and login-div are both initially hidden.
@@ -60,12 +60,14 @@ var addEvents = function(data) {
 
 }
 
+
 // Adds an event to the calendar.
 var addEvent = function(event) {
 	var eventTitle = event.get("eventTitle");
 	var startTime = event.get("startTime");
 	var endTime = event.get("endTime");
 
+    $("#eventList").append("<li><div><h2>" + eventTitle + "</h2><ul><li>Start time: " + startTime + "</li><li>End time: " + endTime + "</li></ul></div></li>");
 	var theEvent = {
 		title: eventTitle,
 		start: startTime,
@@ -76,6 +78,15 @@ var addEvent = function(event) {
 
 }
 
+var showList = function() {
+    $("#listView").show();
+    $("#calendar").hide();
+}
+
+var showCalendar = function() {
+    $("#listView").hide();
+    $("#calendar").show();
+}
 // Fades in the event form.
 var revealEventForm = function() {
 

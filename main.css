@@ -114,6 +114,10 @@
 			margin: 20px auto;
 		}
 
+		#listView ul {
+			list-style-type: none;
+		}
+
 	/* BUTTON DIV: */
 
 		.button-div a {
