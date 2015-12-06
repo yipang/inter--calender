@@ -17,13 +17,19 @@ $(document).ready(function() {
 
 	// Initializing fullCalendar.
 	$("#calendar").fullCalendar({
+		//eventClick: function( event, jsEvent, view ) { }
+
 		header: {
 			left: 'prev,next today',
 			center: 'title',
 			right: 'month,agendaWeek,agendaDay'
 		},
+		eventClick: function( event, jsEvent, view ) { 
+			alert('Event: ' + calEvent.title);
+		},
 		businessHours: false,
 		editable: false
+
 	});
 
 	$("#calendar").hide();
