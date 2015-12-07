@@ -38,6 +38,11 @@
 			margin: 10px;
 		}
 
+		.tiny-note {
+			font-size: 12px;
+			font-style: italic;
+		}
+
 	/* TITLE: */
 
 		#title-div, .button-div {

@@ -103,11 +103,11 @@
 									<label for="newTitle">Title</label>
 									<br />
 									<input ng-model="eventTitle" name="eventTitle" id="newTitle" 
-										placeholder="Your event's title." required></input>
+										placeholder="Your event's title." ></input>
 								</div>
 
 								<div class="form-group">
-									<label for="eventUrl">URL</label>
+									<label for="eventUrl">URL*</label>
 									<br />
 									<input name="eventUrl" id="eventUrl" 
 										placeholder="Optional URL."></input>
@@ -118,7 +118,7 @@
 									<label for="startTime">Starts</label>
 									<br />
 									<input type="datetime-local" id="startTime" 
-										placeholder="When does it start?" required></input>
+										placeholder="When does it start?" ></input>
 								</div>
 
 
@@ -126,7 +126,7 @@
 									<label for="endTime">Ends</label>
 									<br />
 									<input type="datetime-local" id="endTime" 
-										placeholder="When does it end?" required></input>
+										placeholder="When does it end?" ></input>
 								</div>
 
 								<div class="form-group">
@@ -136,6 +136,10 @@
 										placeholder="More details about your event." rows="4" 
 										cols="30"></textarea>
 								</div>
+
+								<p class="tiny-note">
+									* Not required!
+								</p>
 
 								<div>
 									<button type="submit" class="form-group" onclick="submitEvent()">
@@ -167,14 +171,14 @@
 		                        <label for="inputEmail">Email</label>
 		                        <br />
 		                        <input type="email" id="inputEmail" 
-		                            placeholder="Your email." required />
+		                            placeholder="Your email." />
 		                    </div>
 
 		                    <div class="form-group">
 		                        <label for="inputPassword">Password</label>
 		                        <br />
 		                        <input type="password" id="userPswd" 
-		                            placeholder="Your password." ng-model="password" required />
+		                            placeholder="Your password." ng-model="password" />
 		                    </div>
 
 		                    <!-- Submit buttons: should only be active if certain inputs are valid -->
