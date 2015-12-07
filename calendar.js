@@ -76,11 +76,12 @@ var addEvents = function(data) {
 // Adds an event to the calendar and the list.
 var addEvent = function(event) {
 	var eventTitle = event.get("eventTitle");
+	var eventUrl = event.get("eventUrl");
 	var startTime = event.get("startTime");
 	var endTime = event.get("endTime");
 	var eventDesc = event.get("eventDesc");
 
-    $("#eventList").append("<li><div class='listed-event'><div class='event-title'><h3>" + eventTitle + "</h3></div><ul><li><em>Begins:</em> " + startTime + "</li><li><em>Ends:</em> " + endTime + "</li><li><p>" + eventDesc + "</p></li></ul></div></li>");
+    $("#eventList").append("<li><div class='listed-event'><div class='event-title'><a href='" + eventUrl + "'><h3>" + eventTitle + "</h3></a></div><ul><li><em>Begins:</em> " + startTime + "</li><li><em>Ends:</em> " + endTime + "</li><li><p>" + eventDesc + "</p></li></ul></div></li>");
 	var theEvent = {
 		title: eventTitle,
 		start: startTime,
@@ -104,12 +105,12 @@ var submitEvent = function() {
 	$("#event-errors").empty();
 
 	var eventTitle = $("#newTitle").val();
-	var url = $("#eventUrl").val();
+	var eventUrl = $("#eventUrl").val();
 	var startTime = $("#startTime").val();
 	var endTime = $("#endTime").val();
-	var desc = $("#eventDesc").val();
+	var eventDesc = $("#eventDesc").val();
 
-	if (eventTitle === "" || startTime === "" || endTime === "" || desc === "") {
+	if (eventTitle === "" || startTime === "" || endTime === "" || eventDesc === "") {
 
 		var warning = "<li class='warning'>Error detected: PEBCAK. Please resolve:</li>";
 		$("#event-errors").append(warning);
@@ -125,7 +126,7 @@ var submitEvent = function() {
 			var error = "<li>You're missing the end time of your event.</li>";
 			$("#event-errors").append(error);
 		}
-		if (desc === "") {
+		if (eventDesc === "") {
 			var error = "<li>You're missing a description of your event.</li>";
 			$("#event-errors").append(error);
 		}
@@ -135,8 +136,13 @@ var submitEvent = function() {
 
 		var anEvent = new Event();
 		anEvent.set("eventTitle", eventTitle);
+		anEvent.set("eventUrl", eventUrl);
 		anEvent.set("startTime", startTime);
 		anEvent.set("endTime", endTime);
+		anEvent.set("eventDesc", eventDesc)
+
+		console.log(eventTitle + " " + eventUrl + " " + startTime + " " + endTime + " " + eventDesc);
+
 		anEvent.save(null, {
 			success: function(anEvent) {
 				$("#newTitle").empty();
@@ -170,21 +176,26 @@ var signUp = function() {
 	var userPswd = $("#userPswd").val();
 
 	if (userEmail === "" || userPswd === "") {
+
 		var warning = "<li class='warning'>You cannot create an account without:</li>";
 		$("#login-errors").append(warning);
 		if (userEmail === "" && userPswd === "") {
 			var error = "<li>A valid email address or a password.</li>";
 			$("#login-errors").append(error);
 		}
-		if (userEmail === "") {
+		if (userEmail === "" && userPswd != "") {
 			var error = "<li>A valid email address.</li>";
 			$("#login-errors").append(error);
 		}
-		if (userPswd === "") {
+		if (userPswd === "" && userEmail != "") {
 			var error = "<li>A password.</li>"
 			$("#login-errors").append(error);
 		}
+		$("#login-errors").fadeIn(1000);
+
 	} else {
+
+		alert("Success.");
 		// CODE FOR SUCCESSFUL SIGN UP HERE
 	}
 
@@ -199,9 +210,9 @@ var signIn = function() {
 
 }
 
-////////////////
-// AESTHETICS //
-////////////////
+/////////////////////
+// USER EXPERIENCE //
+/////////////////////
 
 // Shows the list; hides the calendar.
 var showList = function() {

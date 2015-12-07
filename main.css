@@ -159,6 +159,16 @@
 			padding: 0px;
 		}
 
+		.event-title a {
+			color: #FFFFFF;
+			transition: color 1s;
+		}
+
+		.event-title a:hover {
+			color: #FFDD3D;
+			text-decoration: none;
+		}
+
 	/* ERROR TEXT: */
 		.errors {
 			color: #FF3737;
