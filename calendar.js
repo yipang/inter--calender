@@ -1,3 +1,7 @@
+//////////////////////////////
+// INITIALIZING APPLICATION //
+//////////////////////////////
+
 // Initializing angular app, iSchoolCalendar.
 var iSchoolCalendar = angular.module("iSchoolCalendar", []);
 
@@ -9,6 +13,7 @@ var Event = Parse.Object.extend("Event");
 var User = Parse.Object.extend("User");
 
 $(document).ready(function() {
+
     $("#listView").hide();
 	console.log("Document ready.");
 
@@ -38,6 +43,10 @@ $(document).ready(function() {
 	$("#calendar").show();
 		
 });
+
+///////////////////////////////////
+// CALENDAR & LIST FUNCTIONALITY //
+///////////////////////////////////
 
 // Empties calendar and list; queries Parse for events.
 var getEvents = function() {
@@ -82,6 +91,10 @@ var addEvent = function(event) {
 	$("#calendar").fullCalendar("renderEvent", theEvent, true);
 
 }
+
+//////////////////////
+// EVENT SUBMISSION //
+//////////////////////
 
 // Upon clicking "Submit," submitEvent parses input for the event and hawks it to the Parse
 // database, so long as the input is valid.
@@ -143,9 +156,30 @@ var submitEvent = function() {
 
 }
 
+////////////////////////////
+// USER SIGN UP & SIGN IN //
+////////////////////////////
+
+// signUp adds a newly created user to the Parse database.
 var signUp = function() {
-	
+
+	var userEmail = $("#email").val();
+	var userPswd = $("#userPswd").val();
+
 }
+
+// signIn queries the database for this user. If they exist, they're signed in and may now add
+// events to the calendar.
+var signIn = function() {
+
+	var userEmail = $("#email").val();
+	var userPswd = $("#userPswd").val();
+
+}
+
+////////////////
+// AESTHETICS //
+////////////////
 
 // Shows the list; hides the calendar.
 var showList = function() {
