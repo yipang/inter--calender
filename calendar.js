@@ -199,8 +199,21 @@ var signUp = function() {
 
 	} else {
 
-		alert("Success.");
-		// CODE FOR SUCCESSFUL SIGN UP HERE
+		var newUser = new Parse.User();
+		newUser.set("username", userEmail);
+		newUser.set("password", userPassword);
+		newUser.set("email", userEmail);
+		user.set("email", "email@example.com");
+
+		user.signUp(null, {
+		  success: function(newUser) {
+		    
+		  },
+		  error: function(newUser, error) {
+		    alert("ERROR: " + error.code + " " + error.message);
+		  }
+		});
+		
 	}
 
 }
