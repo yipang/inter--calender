@@ -14,7 +14,12 @@
 			font-size: 14px;
 		}
 
-		h1, h2, h3 {
+		em {
+			font-style: normal;
+			font-weight: bold;
+		}
+
+		h1, h2, h3, h4 {
 			font-family: "Oswald", sans-serif;
 			font-weight: 400;
 		}
@@ -114,8 +119,44 @@
 			margin: 20px auto;
 		}
 
+	/* EVENT LIST: */
+
 		#listView ul {
 			list-style-type: none;
+		}
+
+		#eventList {
+			padding: 0px;
+		}
+
+		.listed-event {
+			border-style: solid;
+			border-color: #4B2E83;
+			margin-top: 20px;
+			margin-bottom: 20px;
+			padding: 0px;
+			max-width: 900px;
+		}
+
+		.listed-event:hover {
+			border-color: #603CA2;
+		}
+
+		.listed-event ul {
+			margin: 20px;
+			padding: 0px;
+		}
+
+		.event-title {
+			background-color: #4B2E83;
+			color: #FFFFFF;
+			margin-top: 0px;
+			padding: 10px;
+		}
+
+		.event-title h3 {
+			margin: 0px;
+			padding: 0px;
 		}
 
 	/* BUTTON DIV: */

@@ -63,7 +63,7 @@
 					</a>
 				</li>
 				<li class="switch-button">
-					<a href="#calendar" onClick="showList()">
+					<a href="#listView" onClick="showList()">
 						List View
 					</a>
 				</li>
@@ -83,7 +83,7 @@
 					<div class="container col-sm-12" id="calendar"></div>
 					
 					<!-- LIST VIEW. -->
-					<div id="listView" class="container col-sm-12">
+					<div id="listView">
 						<ul id="eventList"></ul>
 					</div>
 
@@ -99,15 +99,22 @@
 							<form name="myForm" novalidata>
 
 								<div class="form-group">
-									<label for="newTitle">Event Title</label>
+									<label for="newTitle">Title</label>
 									<br />
 									<input ng-model="eventTitle" name="eventTitle" id="newTitle" 
 										placeholder="Your event's title."></input>
 								</div>
 
+								<div class="form-group">
+									<label for="eventUrl">URL</label>
+									<br />
+									<input name="eventUrl" id="eventUrl" 
+										placeholder="Optional URL."></input>
+								</div>
+
 														
 							    <div class="newStartDate">
-									<label for="startTime">Start Date and Time</label>
+									<label for="startTime">Starts</label>
 									<br />
 									<input type="datetime-local" id="startTime" 
 										placeholder="When does it start?"></input>
@@ -115,17 +122,19 @@
 
 
 								<div class="newEndDate">
-									<label for="endTime">End Date and Time</label>
+									<label for="endTime">Ends</label>
 									<br />
 									<input type="datetime-local" id="endTime" 
 										placeholder="When does it end?"></input>
 								</div>
 
 								<div>
-									<label for="eventDesc">Event Description</label>
+									<label for="eventDesc">Description</label>
 									<br />
 									<textarea id="eventDesc" 
-										placeholder="More detailed about this Event" rows="4" cols="30"></textarea>
+										placeholder="More details about your event." rows="4" 
+										cols="30">
+									</textarea>
 								</div>
 
 								<div>
@@ -167,15 +176,12 @@
 		                    <div class="form-group">
 		                        <button type="submit">
 		                            Sign Up
-		                            <!-- what's this for ?-->
-		                            <span class="fa fa-refresh fa-spin spinner"></span>
 		                        </button>
 		                    </div>
 
 		                    <div class="form-group">
 		                        <button type="submit">
 		                            Sign In
-		                            <span class="fa fa-refresh fa-spin spinner"></span>
 		                        </button>
 		                    </div>
 
