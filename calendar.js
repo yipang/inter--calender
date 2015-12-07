@@ -43,10 +43,12 @@ var signUp = function() {
 	
 }
 
-// Empties calendar; queries Parse for events.
+// Empties calendar and list; queries Parse for events.
 var getEvents = function() {
 
 	$("#calendar").fullCalendar("removeEvents");
+	$("#eventList").empty();
+	
 	var query = new Parse.Query(Event);
 	query.find({
 		success:function(results) {
@@ -119,6 +121,9 @@ var revealLoginForm = function() {
 // database, so long as the input is valid.
 var submitEvent = function() {
 
+	$("#event-errors").hide();
+	$("#event-errors").empty();
+
 	var eventTitle = $("#newTitle").val();
 	var url = $("#eventUrl").val();
 	var startTime = $("#startTime").val();
@@ -126,6 +131,7 @@ var submitEvent = function() {
 	var desc = $("#eventDesc").val();
 
 	if (eventTitle === "" || startTime === "" || endTime === "" || desc === "") {
+
 		var warning = "<li class='warning'>Error detected: PEBCAK. Please resolve:</li>";
 		$("#event-errors").append(warning);
 		if (eventTitle === "") {
@@ -144,7 +150,10 @@ var submitEvent = function() {
 			var error = "<li>You're missing a description of your event.</li>";
 			$("#event-errors").append(error);
 		}
+		$("#event-errors").fadeIn(1000);
+
 	} else {
+
 		var anEvent = new Event();
 		anEvent.set("eventTitle", eventTitle);
 		anEvent.set("startTime", startTime);
@@ -163,6 +172,7 @@ var submitEvent = function() {
 		});
 
 		getEvents();
+
 	}
 
 }
