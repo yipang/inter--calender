@@ -39,16 +39,12 @@ $(document).ready(function() {
 		
 });
 
-var signUp = function() {
-	
-}
-
 // Empties calendar and list; queries Parse for events.
 var getEvents = function() {
 
 	$("#calendar").fullCalendar("removeEvents");
 	$("#eventList").empty();
-	
+
 	var query = new Parse.Query(Event);
 	query.find({
 		success:function(results) {
@@ -84,36 +80,6 @@ var addEvent = function(event) {
 	};
 
 	$("#calendar").fullCalendar("renderEvent", theEvent, true);
-
-}
-
-// Shows the list; hides the calendar.
-var showList = function() {
-
-    $("#listView").show();
-    $("#calendar").hide();
-
-}
-
-// Shows the calendar; hides the list.
-var showCalendar = function() {
-
-    $("#listView").hide();
-    $("#calendar").show();
-
-}
-
-// Fades in the event form.
-var revealEventForm = function() {
-
-	$("#add-event-div").fadeIn(1000);
-
-}
-
-// Fades in the login form.
-var revealLoginForm = function() {
-
-	$("#login-div").fadeIn(1000);
 
 }
 
@@ -174,5 +140,39 @@ var submitEvent = function() {
 		getEvents();
 
 	}
+
+}
+
+var signUp = function() {
+	
+}
+
+// Shows the list; hides the calendar.
+var showList = function() {
+
+    $("#listView").show();
+    $("#calendar").hide();
+
+}
+
+// Shows the calendar; hides the list.
+var showCalendar = function() {
+
+    $("#listView").hide();
+    $("#calendar").show();
+
+}
+
+// Fades in the event form.
+var revealEventForm = function() {
+
+	$("#add-event-div").fadeIn(1000);
+
+}
+
+// Fades in the login form.
+var revealLoginForm = function() {
+
+	$("#login-div").fadeIn(1000);
 
 }
