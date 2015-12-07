@@ -163,8 +163,30 @@ var submitEvent = function() {
 // signUp adds a newly created user to the Parse database.
 var signUp = function() {
 
+	$("#login-errors").hide();
+	$("#login-errors").empty();
+
 	var userEmail = $("#email").val();
 	var userPswd = $("#userPswd").val();
+
+	if (userEmail === "" || userPswd === "") {
+		var warning = "<li class='warning'>You cannot create an account without:</li>";
+		$("#login-errors").append(warning);
+		if (userEmail === "" && userPswd === "") {
+			var error = "<li>A valid email address or a password.</li>";
+			$("#login-errors").append(error);
+		}
+		if (userEmail === "") {
+			var error = "<li>A valid email address.</li>";
+			$("#login-errors").append(error);
+		}
+		if (userPswd === "") {
+			var error = "<li>A password.</li>"
+			$("#login-errors").append(error);
+		}
+	} else {
+		// CODE FOR SUCCESSFUL SIGN UP HERE
+	}
 
 }
 
