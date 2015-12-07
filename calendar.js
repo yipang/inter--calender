@@ -14,6 +14,7 @@ var User = Parse.Object.extend("User");
 
 $(document).ready(function() {
 
+    $('#')
     $("#listView").hide();
 	console.log("Document ready.");
 
@@ -30,7 +31,10 @@ $(document).ready(function() {
 			right: 'month,agendaWeek,agendaDay'
 		},
 		eventClick: function( event, jsEvent, view ) { 
-			alert('Event: ' + calEvent.title);
+			$('#modalTitle').html(event.title);
+            $('#modalBody').html(event.description);
+            $('#eventUrl').attr('href',event.url);
+            $('#fullCalModal').modal();
 		},
 		eventColor: "#603CA2",
 		businessHours: false,

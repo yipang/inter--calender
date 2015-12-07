@@ -201,6 +201,11 @@
 			text-decoration: none;
 		}
 
+		/* title of modals */
+		.modal-header {
+			background-image: 'img/shortcut-icon.png';
+		}
+
 /* SMALL SCREENS: */
 
 	@media screen and (min-width: 500px) {
