@@ -85,15 +85,20 @@ var addEvent = function(event) {
 
 }
 
-// showList and showCalendar switch between displaying the events in a list and calendar format.
+// Shows the list; hides the calendar.
 var showList = function() {
+
     $("#listView").show();
     $("#calendar").hide();
+
 }
 
+// Shows the calendar; hides the list.
 var showCalendar = function() {
+
     $("#listView").hide();
     $("#calendar").show();
+
 }
 
 // Fades in the event form.
@@ -110,7 +115,8 @@ var revealLoginForm = function() {
 
 }
 
-// Upon clicking "Submit," submitEvent.
+// Upon clicking "Submit," submitEvent parses input for the event and hawks it to the Parse
+// database, so long as the input is valid.
 var submitEvent = function() {
 
 	var eventTitle = $("#newTitle").val();
@@ -119,23 +125,44 @@ var submitEvent = function() {
 	var endTime = $("#endTime").val();
 	var desc = $("#eventDesc").val();
 
-	var anEvent = new Event();
-	anEvent.set("eventTitle", eventTitle);
-	anEvent.set("startTime", startTime);
-	anEvent.set("endTime", endTime);
-	anEvent.save(null, {
-		success: function(anEvent) {
-			$("#newTitle").empty();
-			$("#eventUrl").empty();
-			$("#startTime").empty();
-			$("#endTime").empty();
-			$("#eventDesc").empty();
-		},
-		error: function(anEvent, error) {
-			alert("ERROR: " + error.message);
+	if (eventTitle === "" || startTime === "" || endTime === "" || desc === "") {
+		var warning = "<li class='warning'>Error detected: PEBCAK. Please resolve:</li>";
+		$("#event-errors").append(warning);
+		if (eventTitle === "") {
+			var error = "<li>You're missing an event title.</li>";
+			$("#event-errors").append(error);
 		}
-	});
+		if (startTime === "") {
+			var error = "<li>You're missing the start time of your event.</li>";
+			$("#event-errors").append(error);
+		}
+		if (endTime === "") {
+			var error = "<li>You're missing the end time of your event.</li>";
+			$("#event-errors").append(error);
+		}
+		if (desc === "") {
+			var error = "<li>You're missing a description of your event.</li>";
+			$("#event-errors").append(error);
+		}
+	} else {
+		var anEvent = new Event();
+		anEvent.set("eventTitle", eventTitle);
+		anEvent.set("startTime", startTime);
+		anEvent.set("endTime", endTime);
+		anEvent.save(null, {
+			success: function(anEvent) {
+				$("#newTitle").empty();
+				$("#eventUrl").empty();
+				$("#startTime").empty();
+				$("#endTime").empty();
+				$("#eventDesc").empty();
+			},
+			error: function(anEvent, error) {
+				alert("ERROR: " + error.message);
+			}
+		});
 
-	getEvents();
+		getEvents();
+	}
 
 }

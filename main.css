@@ -159,6 +159,17 @@
 			padding: 0px;
 		}
 
+	/* ERROR TEXT: */
+		.errors {
+			color: #FF3737;
+			list-style-type: none;
+			padding: 0px;
+		}
+
+		.warning {
+			font-weight: bold;
+		}
+
 	/* BUTTON DIV: */
 
 		.button-div a {

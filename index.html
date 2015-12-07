@@ -93,6 +93,7 @@
 						<div class="container col-sm-6">
 
 							<h2>
+								<i class="fa fa-calendar"></i>
 								Add Event
 							</h2>
 
@@ -102,7 +103,7 @@
 									<label for="newTitle">Title</label>
 									<br />
 									<input ng-model="eventTitle" name="eventTitle" id="newTitle" 
-										placeholder="Your event's title."></input>
+										placeholder="Your event's title." required></input>
 								</div>
 
 								<div class="form-group">
@@ -113,22 +114,22 @@
 								</div>
 
 														
-							    <div class="newStartDate">
+							    <div class="form-group">
 									<label for="startTime">Starts</label>
 									<br />
 									<input type="datetime-local" id="startTime" 
-										placeholder="When does it start?"></input>
+										placeholder="When does it start?" required></input>
 								</div>
 
 
-								<div class="newEndDate">
+								<div class="form-group">
 									<label for="endTime">Ends</label>
 									<br />
 									<input type="datetime-local" id="endTime" 
-										placeholder="When does it end?"></input>
+										placeholder="When does it end?" required></input>
 								</div>
 
-								<div>
+								<div class="form-group">
 									<label for="eventDesc">Description</label>
 									<br />
 									<textarea id="eventDesc" 
@@ -137,12 +138,16 @@
 								</div>
 
 								<div>
-									<button type="submit" onclick="submitEvent()">
+									<button type="submit" class="form-group" onclick="submitEvent()">
 										Submit
 									</button>
 								</div>
 
 							</form>
+
+							<!-- Displays errors regarding event submission. See calendar.js. -->
+							<ul id="event-errors" class="errors">
+							</ul>
 
 						</div>
 
@@ -152,6 +157,7 @@
 					<div id="login-div" class="container col-sm-6">
 
 						<h2>
+							<i class="fa fa-sign-in"></i>
 		                    Sign In
 		                </h2>
 
@@ -212,7 +218,6 @@
 			</div>
 
 		</div>
-
 
 	</body>
 
