@@ -72,12 +72,14 @@ var addEvent = function(event) {
 	var eventTitle = event.get("eventTitle");
 	var startTime = event.get("startTime");
 	var endTime = event.get("endTime");
+	var eventDesc = event.get("eventDesc");
 
-    $("#eventList").append("<li><div><h2>" + eventTitle + "</h2><ul><li>Start time: " + startTime + "</li><li>End time: " + endTime + "</li></ul></div></li>");
+    $("#eventList").append("<li><div><h2>" + eventTitle + "</h2><ul><li>Start time: " + startTime + "</li><li>End time: " + endTime + "</li><li>Description: <p>" + eventDesc + "</p></li></ul></div></li>");
 	var theEvent = {
 		title: eventTitle,
 		start: startTime,
-		end: endTime
+		end: endTime,
+		description: eventDesc
 	};
 
 	$("#calendar").fullCalendar("renderEvent", theEvent, true);
