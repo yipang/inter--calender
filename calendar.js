@@ -25,7 +25,7 @@ $(document).ready(function() {
 			center: 'title',
 			right: 'month,agendaWeek,agendaDay'
 		},
-		eventClick: function( event, jsEvent, view ) { 
+		eventClick: function(event, jsEvent, view) { 
 			$(".modalTitle").html(event.title);
             $(".modalBody").html("<p><b>Start Time:</b> " + Date.parse(event.start) + "</p><p><b>Description</b>: " + event.description);
             $(".eventUrl").attr("href",event.url);

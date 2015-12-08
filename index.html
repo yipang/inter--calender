@@ -44,24 +44,6 @@
 
 	<body ng-app="iSchoolCalendar">
 
-		<div id="fullCalModal" class="modal fade">
-		    <div class="modal-dialog">
-		        <div class="modal-content">
-		            <div class="modal-header">
-		                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span> <span class="sr-only">close</span></button>
-		                <h4 class="modal-title modalTitle"></h4>
-		            </div>
-		            <div class="modal-body modalBody"></div>
-		            <div class="modal-footer">
-		                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-		                <button class="btn btn-default urlbutton" ng-show="eventUrl != undefined">
-		                	<a class="eventUrl" href="event.url">Event Page</a>
-		                </button>
-		            </div>
-		        </div>
-		    </div>
-		</div>
-
 		<!-- Title. -->
 		<div id="title-div">
 
@@ -96,6 +78,32 @@
 			<div id="primary-content">
 
 				<div class="container row">
+
+					<!-- Calendar modals; pop-up when event is clicked on. -->
+					<div id="fullCalModal" class="modal fade">
+					    <div class="modal-dialog">
+					        <div class="modal-content">
+					            <div class="modal-header">
+					                <button type="button" class="close" data-dismiss="modal">
+						                <span aria-hidden="true">×</span> 
+						                <span class="sr-only">close</span>
+					                </button>
+					                <h4 class="modal-title modalTitle"></h4>
+					            </div>
+					            <div class="modal-body modalBody"></div>
+					            <div class="modal-footer">
+					                <button type="button" class="btn btn-default" 
+					                	data-dismiss="modal">Close</button>
+					                <button class="btn btn-default urlbutton" 
+					                	ng-show="eventUrl != undefined">
+					                	<a class="eventUrl" href="event.url">
+					                		Event Page
+					                	</a>
+					                </button>
+					            </div>
+					        </div>
+					    </div>
+					</div>
 
 					<!-- CALENDAR. -->
 					<div class="container col-sm-12" id="calendar"></div>
