@@ -128,14 +128,16 @@ var submitEvent = function() {
 	var startYear = $("#startYear").val();
 	var startHour = $("#startHour").val();
 	var startMinute = $("#startMinute").val();
-	var startTime = (startMonth + " " + startDay + ", " + startYear);
+	var startChrono = $("#startChrono").val();
+	var startTime = (startMonth + " " + startDay + ", " + startYear + " " + startHour + ":" + startMinute + " " + startChrono);
 
 	var endMonth = $("#endMonth").val();
 	var endDay = $("#endDay").val();
 	var endYear = $("#endYear").val();
 	var endHour = $("#endHour").val();
 	var endMinute = $("#endMinute").val();
-	var endTime = (endMonth + " " + endDay + ", " + endYear);
+	var endChrono = $("#endChrono").val();
+	var endTime = (endMonth + " " + endDay + ", " + endYear + " " + endHour + ":" + endMinute + " " + endChrono);
 
 	alert(endTime);
 
