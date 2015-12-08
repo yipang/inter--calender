@@ -213,7 +213,7 @@ var signUp = function() {
 	$("#login-errors").hide();
 	$("#login-errors").empty();
 
-	var userEmail = $("#email").val();
+	var userEmail = $("#userEmail").val();
 	var userPswd = $("#userPswd").val();
 
 	// Sign up validation failure: error displayed.
@@ -249,7 +249,7 @@ var signUp = function() {
 				$("#userPswd").val("");
 			},
 			error: function(newUser, error) {
-				var warning = "<li class='warning'>Error. Code " + error.code + ".</li>";
+				var warning = "<li class='warning'>Error code: " + error.code + ".</li>";
 				$("#login-errors").append(warning);
 				var parseError = "<li>" + error.message + "</li>";
 				$("#login-errors").append(parseError);
