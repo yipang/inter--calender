@@ -217,7 +217,7 @@ var submitEvent = function() {
 
 		}
 	} else {
-		var warning = "<li class='warning'>You must log in before submitting events.</li>"
+		var warning = "<li>You must log in before submitting events.</li>"
 		$("#event-errors").append(warning);
 		$("#event-errors").fadeIn(1000);
 	}
@@ -293,38 +293,44 @@ var logIn = function() {
 	$("#login-success").hide();
 	$("#login-success").empty();
 
-	var userEmail = $("#userEmail").val();
-	var userPswd = $("#userPswd").val();
-
-	if (userEmail === "" || userPswd === "") {
-
-		var warning = "<li class='warning'>You cannot log in without:</li>";
+	if (currentUser) {
+		var warning = "<li>You're already logged in!</li>";
 		$("#login-errors").append(warning);
-		if (userEmail === "") {
-			var error = "<li>... a valid email address.</li>";
-			$("#login-errors").append(error);
-		}
-		if (userPswd === "") {
-			var error = "<li>... a password.</li>";
-			$("#login-errors").append(error);
-		}
 		$("#login-errors").fadeIn(1000);
-
 	} else {
+		var userEmail = $("#userEmail").val();
+		var userPswd = $("#userPswd").val();
 
-		Parse.User.logIn(userEmail, userPswd, {
-			success: function(user) {
-				var success = "<li class='success-declare'>You're now logged in, " + userEmail + "!</li>";
-			},
-			error: function(user, error) {
-				var warning = "<li class='warning'>Error code: " + error.code + ".</li>";
-				$("#login-errors").append(warning);
-				var parseError = "<li>" + error.message + ".</li>";
-				$("#login-errors").append(parseError);
-				$("#login-errors").fadeIn(1000);
+		if (userEmail === "" || userPswd === "") {
+
+			var warning = "<li class='warning'>You cannot log in without:</li>";
+			$("#login-errors").append(warning);
+			if (userEmail === "") {
+				var error = "<li>... a valid email address.</li>";
+				$("#login-errors").append(error);
 			}
-		});
+			if (userPswd === "") {
+				var error = "<li>... a password.</li>";
+				$("#login-errors").append(error);
+			}
+			$("#login-errors").fadeIn(1000);
 
+		} else {
+
+			Parse.User.logIn(userEmail, userPswd, {
+				success: function(user) {
+					var success = "<li class='success-declare'>You're now logged in, " + userEmail + "!</li>";
+				},
+				error: function(user, error) {
+					var warning = "<li class='warning'>Error code: " + error.code + ".</li>";
+					$("#login-errors").append(warning);
+					var parseError = "<li>" + error.message + ".</li>";
+					$("#login-errors").append(parseError);
+					$("#login-errors").fadeIn(1000);
+				}
+			});
+
+		}
 	}
 
 }
