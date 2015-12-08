@@ -195,7 +195,7 @@ var submitEvent = function() {
 }
 
 ////////////////////////////
-// USER SIGN UP & SIGN IN //
+// USER SIGN UP & LOG IN  //
 ////////////////////////////
 
 // signUp adds a newly created user to the Parse database.
@@ -243,9 +243,9 @@ var signUp = function() {
 
 }
 
-// signIn queries the database for this user. If they exist, they're signed in and may now add
+// logIn queries the database for this user. If they exist, they're signed in and may now add
 // events to the calendar.
-var signIn = function() {
+var logIn = function() {
 
 	var userEmail = $("#email").val();
 	var userPswd = $("#userPswd").val();
