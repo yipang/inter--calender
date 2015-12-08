@@ -184,16 +184,14 @@ var submitEvent = function() {
 		$("#event-success").append(success);
 		var successDetails = (eventTitle + " begins on " + startMonth + " " + startDay + ", " + startYear + " at " + startHour + ":" + startMinute + " " + startChrono + ".");
 		$("#event-success").append(successDetails);
-
 		$("#event-success").fadeIn(1000);
-
-		$("#newTitle").empty();
-		$("#eventUrl").empty();
-		$("#eventLocation").empty();
-		$("#eventDesc").empty();
 
 		anEvent.save(null, {
 			success: function(anEvent) {
+				$("#newTitle").val("");
+				$("#eventUrl").val("");
+				$("#eventLocation").val("");
+				$("#eventDesc").val("");
 			},
 			error: function(anEvent, error) {
 				alert("ERROR: " + error.message);
