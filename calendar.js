@@ -11,6 +11,9 @@ Parse.initialize("CIawsCOoro1K3GHQq4teHxwzDyRjE8MuUXauh4Sm", "Mrrvv6XeBDSA6kkWWS
 // Initializing Event object.
 var Event = Parse.Object.extend("Event");
 
+// Checking if the user is logged in.
+var currentUser = Parse.User.current();
+
 $(document).ready(function() {
 
 	// Hiding divs for optimal experience.
@@ -134,83 +137,89 @@ var submitEvent = function() {
 	$("#event-success").hide();
 	$("#event-success").empty();
 
-	var eventTitle = $("#newTitle").val();
-	var eventUrl = $("#eventUrl").val();
+	if (currentUser) {
+		var eventTitle = $("#newTitle").val();
+		var eventUrl = $("#eventUrl").val();
 
-	var startMonth = $("#startMonth").val();
-	var startDay = $("#startDay").val();
-	var startYear = $("#startYear").val();
-	var startHour = $("#startHour").val();
-	var startMinute = $("#startMinute").val();
-	var startChrono = $("#startChrono").val();
-	var startTime = (startMonth + " " + startDay + ", " + startYear + " " + startHour + ":" + startMinute + " " + startChrono);
+		var startMonth = $("#startMonth").val();
+		var startDay = $("#startDay").val();
+		var startYear = $("#startYear").val();
+		var startHour = $("#startHour").val();
+		var startMinute = $("#startMinute").val();
+		var startChrono = $("#startChrono").val();
+		var startTime = (startMonth + " " + startDay + ", " + startYear + " " + startHour + ":" + startMinute + " " + startChrono);
 
-	var endMonth = $("#endMonth").val();
-	var endDay = $("#endDay").val();
-	var endYear = $("#endYear").val();
-	var endHour = $("#endHour").val();
-	var endMinute = $("#endMinute").val();
-	var endChrono = $("#endChrono").val();
-	var endTime = (endMonth + " " + endDay + ", " + endYear + " " + endHour + ":" + endMinute + " " + endChrono);
+		var endMonth = $("#endMonth").val();
+		var endDay = $("#endDay").val();
+		var endYear = $("#endYear").val();
+		var endHour = $("#endHour").val();
+		var endMinute = $("#endMinute").val();
+		var endChrono = $("#endChrono").val();
+		var endTime = (endMonth + " " + endDay + ", " + endYear + " " + endHour + ":" + endMinute + " " + endChrono);
 
-	var eventLocation = $("#eventLocation").val();
-	var eventDesc = $("#eventDesc").val();
+		var eventLocation = $("#eventLocation").val();
+		var eventDesc = $("#eventDesc").val();
 
-	if (eventTitle === "" || eventDesc === "") {
+		if (eventTitle === "" || eventDesc === "") {
 
-		var warning = "<li class='warning'>Error detected: PEBCAK. Please resolve:</li>";
-		$("#event-errors").append(warning);
-		if (eventTitle === "") {
-			var error = "<li>You're missing an event title.</li>";
-			$("#event-errors").append(error);
-		}
-		if (eventDesc === "") {
-			var error = "<li>You're missing a description of your event.</li>";
-			$("#event-errors").append(error);
-		}
-		$("#event-errors").fadeIn(1000);
-
-	} else {
-
-		var anEvent = new Event();
-		anEvent.set("eventTitle", eventTitle);
-		anEvent.set("eventUrl", eventUrl);
-		anEvent.set("startMonth", startMonth);
-		anEvent.set("startDay", startDay);
-		anEvent.set("startYear", startYear);
-		anEvent.set("startHour", startHour);
-		anEvent.set("startMinute", startMinute);
-		anEvent.set("startChrono", startChrono);
-		anEvent.set("startTotal", startTime);
-		anEvent.set("endMonth", endMonth);
-		anEvent.set("endDay", endDay);
-		anEvent.set("endYear", endYear);
-		anEvent.set("endHour", endHour);
-		anEvent.set("endMinute", endMinute);
-		anEvent.set("endChrono", endChrono)
-		anEvent.set("endTotal", endTime);
-		anEvent.set("eventLocation", eventLocation);
-		anEvent.set("eventDesc", eventDesc);
-
-		anEvent.save(null, {
-			success: function(anEvent) {
-				var success = "<li class='success-declare'>Event submitted!</li>";
-				$("#event-success").append(success);
-				var successDetails = (eventTitle + " begins on " + startMonth + " " + startDay + ", " + startYear + " at " + startHour + ":" + startMinute + " " + startChrono + ".");
-				$("#event-success").append(successDetails);
-				$("#event-success").fadeIn(1000);
-				$("#newTitle").val("");
-				$("#eventUrl").val("");
-				$("#eventLocation").val("");
-				$("#eventDesc").val("");
-			},
-			error: function(anEvent, error) {
-				alert("ERROR: " + error.message);
+			var warning = "<li class='warning'>Error detected: PEBCAK. Please resolve:</li>";
+			$("#event-errors").append(warning);
+			if (eventTitle === "") {
+				var error = "<li>You're missing an event title.</li>";
+				$("#event-errors").append(error);
 			}
-		});
+			if (eventDesc === "") {
+				var error = "<li>You're missing a description of your event.</li>";
+				$("#event-errors").append(error);
+			}
+			$("#event-errors").fadeIn(1000);
 
-		getEvents();
+		} else {
 
+			var anEvent = new Event();
+			anEvent.set("eventTitle", eventTitle);
+			anEvent.set("eventUrl", eventUrl);
+			anEvent.set("startMonth", startMonth);
+			anEvent.set("startDay", startDay);
+			anEvent.set("startYear", startYear);
+			anEvent.set("startHour", startHour);
+			anEvent.set("startMinute", startMinute);
+			anEvent.set("startChrono", startChrono);
+			anEvent.set("startTotal", startTime);
+			anEvent.set("endMonth", endMonth);
+			anEvent.set("endDay", endDay);
+			anEvent.set("endYear", endYear);
+			anEvent.set("endHour", endHour);
+			anEvent.set("endMinute", endMinute);
+			anEvent.set("endChrono", endChrono)
+			anEvent.set("endTotal", endTime);
+			anEvent.set("eventLocation", eventLocation);
+			anEvent.set("eventDesc", eventDesc);
+
+			anEvent.save(null, {
+				success: function(anEvent) {
+					var success = "<li class='success-declare'>Event submitted!</li>";
+					$("#event-success").append(success);
+					var successDetails = (eventTitle + " begins on " + startMonth + " " + startDay + ", " + startYear + " at " + startHour + ":" + startMinute + " " + startChrono + ".");
+					$("#event-success").append(successDetails);
+					$("#event-success").fadeIn(1000);
+					$("#newTitle").val("");
+					$("#eventUrl").val("");
+					$("#eventLocation").val("");
+					$("#eventDesc").val("");
+				},
+				error: function(anEvent, error) {
+					alert("ERROR: " + error.message);
+				}
+			});
+
+			getEvents();
+
+		}
+	} else {
+		var warning = "<li class='warning'>You must log in before submitting events.</li>"
+		$("#event-errors").append(warning);
+		$("#event-errors").fadeIn(1000);
 	}
 
 }
