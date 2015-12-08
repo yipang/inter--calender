@@ -32,7 +32,7 @@ $(document).ready(function() {
 		},
 		eventClick: function( event, jsEvent, view ) { 
 			$('#modalTitle').html(event.title);
-            $('#modalBody').html(event.description);
+            $('#modalBody').html("<p>description: " + event.description + "</p><p>Event URL page: " + event.url);
             $('#eventUrl').attr('href',event.url);
             $('#fullCalModal').modal();
 		},
@@ -90,7 +90,8 @@ var addEvent = function(event) {
 		title: eventTitle,
 		start: startTime,
 		end: endTime,
-		description: eventDesc
+		description: eventDesc,
+		url: eventUrl,
 	};
 
 	$("#calendar").fullCalendar("renderEvent", theEvent, true);
