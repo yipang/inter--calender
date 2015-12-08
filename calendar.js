@@ -239,13 +239,21 @@ var signUp = function() {
 		newUser.set("password", userPswd);
 		newUser.set("email", userEmail);
 
-		user.signUp(null, {
+		newUser.signUp(null, {
 			success: function(newUser) {
+				var success = "<li class='success-declare'>Account created!</li>";
+				$("#login-success").append(success);
+				var successDetails = ("Check your email, " + userEmail + ", for verification.");
+				$("#login-success").append(successDetails);
 				$("#email").val("");
 				$("#userPswd").val("");
 			},
 			error: function(newUser, error) {
-				alert("ERROR: " + error.code + " " + error.message);
+				var warning = "<li class='warning'>Error. Code " + error.code + ".</li>";
+				$("#login-errors").append(warning);
+				var parseError = "<li>" + error.message + "</li>";
+				$("#login-errors").append(parseError);
+				$("#login-errors").fadeIn(1000);
 			}
 		});
 		
