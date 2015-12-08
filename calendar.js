@@ -122,25 +122,28 @@ var submitEvent = function() {
 
 	var eventTitle = $("#newTitle").val();
 	var eventUrl = $("#eventUrl").val();
-	var startTime = $("#startTime").val();
-	var endTime = $("#endTime").val();
+
+	var startMonth = $("#startMonth").val();
+	var startDay = $("#startDay").val();
+	var startYear = $("#startYear").val();
+	var startHour = $("#startHour").val();
+	var startMinute = $("#startMinute").val();
+
+	var endMonth = $("#endMonth").val();
+	var endDay = $("#endDay").val();
+	var endYear = $("#endYear").val();
+	var endHour = $("#endHour").val();
+	var endMinute = ("#endMinute").val();
+
 	var eventLocation = $("#eventLocation").val();
 	var eventDesc = $("#eventDesc").val();
 
-	if (eventTitle === "" || startTime === "" || endTime === "" || eventDesc === "") {
+	if (eventTitle === "" || eventDesc === "") {
 
 		var warning = "<li class='warning'>Error detected: PEBCAK. Please resolve:</li>";
 		$("#event-errors").append(warning);
 		if (eventTitle === "") {
 			var error = "<li>You're missing an event title.</li>";
-			$("#event-errors").append(error);
-		}
-		if (startTime === "") {
-			var error = "<li>You're missing the start time of your event.</li>";
-			$("#event-errors").append(error);
-		}
-		if (endTime === "") {
-			var error = "<li>You're missing the end time of your event.</li>";
 			$("#event-errors").append(error);
 		}
 		if (eventDesc === "") {
