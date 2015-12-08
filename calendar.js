@@ -14,14 +14,10 @@ var User = Parse.Object.extend("User");
 
 $(document).ready(function() {
 
-    $('#')
+	// Hiding divs for optimal experience.
     $("#listView").hide();
-	console.log("Document ready.");
-
-	// add-event-div and login-div are both initially hidden.
 	$("#add-event-div").hide();
 	$("#login-div").hide();
-	console.log("Add Event <div> hidden.");
 
 	// Initializing fullCalendar.
 	$("#calendar").fullCalendar({
@@ -85,7 +81,14 @@ var addEvent = function(event) {
 	var endTime = event.get("endTime");
 	var eventDesc = event.get("eventDesc");
 
-    $("#eventList").append("<li><div class='listed-event'><div class='event-title'><a href='" + eventUrl + "'><h3>" + eventTitle + "</h3></a></div><ul><li><em>Begins:</em> " + startTime + "</li><li><em>Ends:</em> " + endTime + "</li><li><p>" + eventDesc + "</p></li></ul></div></li>");
+	// Posting event to list view.
+	if (eventUrl === "") {
+		$("#eventList").append("<li><div class='listed-event'><div class='event-title'>" + eventUrl + "<h3>" + eventTitle + "</h3></div><ul><li><em>Begins:</em> " + startTime + "</li><li><em>Ends:</em> " + endTime + "</li><li><p>" + eventDesc + "</p></li></ul></div></li>");
+	} else {
+		$("#eventList").append("<li><div class='listed-event'><div class='event-title'><a href='" + eventUrl + "'><h3>" + eventTitle + "</h3></a></div><ul><li><em>Begins:</em> " + startTime + "</li><li><em>Ends:</em> " + endTime + "</li><li><p>" + eventDesc + "</p></li></ul></div></li>");
+	}
+
+	// Posting event to calendar.
 	var theEvent = {
 		title: eventTitle,
 		start: startTime,
@@ -93,7 +96,6 @@ var addEvent = function(event) {
 		description: eventDesc,
 		url: eventUrl,
 	};
-
 	$("#calendar").fullCalendar("renderEvent", theEvent, true);
 
 }
@@ -180,24 +182,22 @@ var signUp = function() {
 	var userEmail = $("#email").val();
 	var userPswd = $("#userPswd").val();
 
+	// Sign up validation failure: error displayed.
 	if (userEmail === "" || userPswd === "") {
 
 		var warning = "<li class='warning'>You cannot create an account without:</li>";
 		$("#login-errors").append(warning);
-		if (userEmail === "" && userPswd === "") {
-			var error = "<li>A valid email address or a password.</li>";
-			$("#login-errors").append(error);
-		}
-		if (userEmail === "" && userPswd != "") {
+		if (userEmail === "") {
 			var error = "<li>A valid email address.</li>";
 			$("#login-errors").append(error);
 		}
-		if (userPswd === "" && userEmail != "") {
-			var error = "<li>A password.</li>"
+		if (userPswd === "") {
+			var error = "<li>A password.</li>";
 			$("#login-errors").append(error);
 		}
 		$("#login-errors").fadeIn(1000);
 
+	// Sign up validation success: account created.
 	} else {
 
 		var newUser = new Parse.User();
