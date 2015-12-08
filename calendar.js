@@ -124,6 +124,7 @@ var submitEvent = function() {
 	var eventUrl = $("#eventUrl").val();
 	var startTime = $("#startTime").val();
 	var endTime = $("#endTime").val();
+	var eventLocation = $("#eventLocation").val();
 	var eventDesc = $("#eventDesc").val();
 
 	if (eventTitle === "" || startTime === "" || endTime === "" || eventDesc === "") {
