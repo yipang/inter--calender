@@ -241,12 +241,13 @@ var signUp = function() {
 		newUser.set("email", userEmail);
 
 		user.signUp(null, {
-		  success: function(newUser) {
-		    
-		  },
-		  error: function(newUser, error) {
-		    alert("ERROR: " + error.code + " " + error.message);
-		  }
+			success: function(newUser) {
+				$("#email").val("");
+				$("#userPswd").val("");
+			},
+			error: function(newUser, error) {
+				alert("ERROR: " + error.code + " " + error.message);
+			}
 		});
 		
 	}
