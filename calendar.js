@@ -224,6 +224,8 @@ var signUp = function() {
 
 	$("#login-errors").hide();
 	$("#login-errors").empty();
+	$("#login-success").hide();
+	$("#login-success").empty();
 
 	var userEmail = $("#userEmail").val();
 	var userPswd = $("#userPswd").val();
@@ -277,17 +279,44 @@ var signUp = function() {
 // events to the calendar.
 var logIn = function() {
 
-	var userEmail = $("#email").val();
+	$("#login-errors").hide();
+	$("#login-errors").empty();
+	$("#login-success").hide();
+	$("#login-success").empty();
+
+	var userEmail = $("#userEmail").val();
 	var userPswd = $("#userPswd").val();
 
-	Parse.User.logIn(userEmail, userPswd, {
-	success: function(user) {
-		alert("Success!");
-	},
-	error: function(user, error) {
-		alert("ERROR: " + error.code + " " + error.message);
+	if (userEmail === "" || userPswd === "") {
+
+		var warning = "<li class='warning'>You cannot log in without:</li>";
+		$("#login-errors").append(warning);
+		if (userEmail === "") {
+			var error = "<li>... a valid email address.</li>";
+			$("#login-errors").append(error);
+		}
+		if (userPswd === "") {
+			var error = "<li>... a password.</li>";
+			$("#login-errors").append(error);
+		}
+		$("#login-errors").fadeIn(1000);
+
+	} else {
+
+		Parse.User.logIn(userEmail, userPswd, {
+			success: function(user) {
+				var success = "<li class='success-declare'>You're now logged in, " + userEmail + "!</li>";
+			},
+			error: function(user, error) {
+				var warning = "<li class='warning'>Error code: " + error.code + ".</li>";
+				$("#login-errors").append(warning);
+				var parseError = "<li>" + error.message + ".</li>";
+				$("#login-errors").append(parseError);
+				$("#login-errors").fadeIn(1000);
+			}
+		});
+
 	}
-});
 
 }
 
