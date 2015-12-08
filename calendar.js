@@ -27,10 +27,10 @@ $(document).ready(function() {
 			right: 'month,agendaWeek,agendaDay'
 		},
 		eventClick: function( event, jsEvent, view ) { 
-			$('#modalTitle').html(event.title);
-            $('#modalBody').html("<p><b>Description</b>: " + event.description + "<p><b>Start Time</b>: " + Date.parse(event.start) + "</p>");
-            $('#eventUrl').attr('href',event.url);
-            $('#fullCalModal').modal();
+			$(".modalTitle").html(event.title);
+            $(".modalBody").html("<p><b>Start Time:</b> " + Date.parse(event.start) + "</p><p><b>Description</b>: " + event.description);
+            $(".eventUrl").attr("href",event.url);
+            $("#fullCalModal").modal();
 		},
 		eventColor: "#603CA2",
 		businessHours: false,
@@ -79,13 +79,22 @@ var addEvent = function(event) {
 	var eventUrl = event.get("eventUrl");
 	var startTime = event.get("startTime");
 	var endTime = event.get("endTime");
+	var eventLocation = event.get("eventLocation");
 	var eventDesc = event.get("eventDesc");
 
 	// Posting event to list view.
 	if (eventUrl === "") {
-		$("#eventList").append("<li><div class='listed-event'><div class='event-title'>" + eventUrl + "<h3>" + eventTitle + "</h3></div><ul><li><em>Begins:</em> " + startTime + "</li><li><em>Ends:</em> " + endTime + "</li><li><p>" + eventDesc + "</p></li></ul></div></li>");
+		if (eventLocation === "") {
+			$("#eventList").append("<li><div class='listed-event'><div class='event-title'><h3>" + eventTitle + "</h3></div><ul><li><em>Begins:</em> " + startTime + "</li><li><em>Ends:</em> " + endTime + "</li><li><p>" + eventDesc + "</p></li></ul></div></li>");
+		} else {
+			$("#eventList").append("<li><div class='listed-event'><div class='event-title'><h3>" + eventTitle + "</h3></div><ul><li><em>Location:</em> " + eventLocation + "</li><li><em>Begins:</em> " + startTime + "</li><li><em>Ends:</em> " + endTime + "</li><li><p>" + eventDesc + "</p></li></ul></div></li>");
+		}
 	} else {
-		$("#eventList").append("<li><div class='listed-event'><div class='event-title'><a href='" + eventUrl + "'><h3>" + eventTitle + "</h3></a></div><ul><li><em>Begins:</em> " + startTime + "</li><li><em>Ends:</em> " + endTime + "</li><li><p>" + eventDesc + "</p></li></ul></div></li>");
+		if (eventLocation === "") {
+			$("#eventList").append("<li><div class='listed-event'><div class='event-title'><a href='" + eventUrl + "'><h3>" + eventTitle + "</h3></a></div><ul><li><em>Begins:</em> " + startTime + "</li><li><em>Ends:</em> " + endTime + "</li><li><p>" + eventDesc + "</p></li></ul></div></li>");
+		} else {
+			$("#eventList").append("<li><div class='listed-event'><div class='event-title'><a href='" + eventUrl + "'><h3>" + eventTitle + "</h3></a></div><ul><li><em>Location:</em> " + eventLocation + "</li><li><em>Begins:</em> " + startTime + "</li><li><em>Ends:</em> " + endTime + "</li><li><p>" + eventDesc + "</p></li></ul></div></li>");
+		}
 	}
 
 	// Posting event to calendar.
@@ -146,7 +155,8 @@ var submitEvent = function() {
 		anEvent.set("eventUrl", eventUrl);
 		anEvent.set("startTime", startTime);
 		anEvent.set("endTime", endTime);
-		anEvent.set("eventDesc", eventDesc)
+		anEvent.set("eventLocation", eventLocation);
+		anEvent.set("eventDesc", eventDesc);
 
 		console.log(eventTitle + " " + eventUrl + " " + startTime + " " + endTime + " " + eventDesc);
 
@@ -156,6 +166,7 @@ var submitEvent = function() {
 				$("#eventUrl").empty();
 				$("#startTime").empty();
 				$("#endTime").empty();
+				$("#eventLocation").empty();
 				$("#eventDesc").empty();
 			},
 			error: function(anEvent, error) {
