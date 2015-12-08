@@ -181,14 +181,22 @@
 		}
 
 	/* ERROR TEXT: */
-		.errors {
-			color: #FF3737;
+
+		.errors, .success {
 			list-style-type: none;
 			padding: 0px;
 		}
 
-		.warning {
+		.errors {
+			color: #FF3737;
+		}
+
+		.warning, .success-declare {
 			font-weight: bold;
+		}
+
+		.success {
+			color: #40FF37;
 		}
 
 	/* BUTTON DIV: */

@@ -333,6 +333,9 @@
 							<!-- Displays errors regarding event submission. See calendar.js. -->
 							<ul id="event-errors" class="errors">
 							</ul>
+							<!-- Displays success notification. -->
+							<ul id="event-success" class="success">
+							</ul>
 
 						</div>
 
@@ -362,7 +365,7 @@
 		                            placeholder="Your password." ng-model="password" />
 		                    </div>
 
-		                    <!-- Submit buttons: should only be active if certain inputs are valid -->
+		                    <!-- Submit buttons. -->
 		                    <div class="form-group">
 		                        <button type="submit" onclick="signIn()">
 		                            Sign In
@@ -380,6 +383,10 @@
 		                <!-- Displays errors regarding users. See calendar.js. -->
 		                <ul id="login-errors" class="errors">
 		                </ul>
+
+		                <!-- Displays notification on successful sign in or sign up. -->
+		                <ul id="event-success" class="success">
+						</ul>
 
 					</div>
 

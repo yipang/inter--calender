@@ -8,9 +8,8 @@ var iSchoolCalendar = angular.module("iSchoolCalendar", []);
 // Initializing Parse.
 Parse.initialize("CIawsCOoro1K3GHQq4teHxwzDyRjE8MuUXauh4Sm", "Mrrvv6XeBDSA6kkWWSBzkmnjDeHNh406gn5INWaB");
 
-// Initializing Event & User objects.
+// Initializing Event object.
 var Event = Parse.Object.extend("Event");
-var User = Parse.Object.extend("User");
 
 $(document).ready(function() {
 
@@ -119,6 +118,8 @@ var submitEvent = function() {
 
 	$("#event-errors").hide();
 	$("#event-errors").empty();
+	$("#event-success").hide();
+	$("#event-success").empty();
 
 	var eventTitle = $("#newTitle").val();
 	var eventUrl = $("#eventUrl").val();
@@ -166,7 +167,12 @@ var submitEvent = function() {
 		anEvent.set("eventLocation", eventLocation);
 		anEvent.set("eventDesc", eventDesc);
 
-		console.log(eventTitle + " " + eventUrl + " " + startTime + " " + endTime + " " + eventDesc);
+		var success = "<li class='success-declare'>Event submitted!</li>";
+		$("#event-success").append(success);
+		var successDetails = (eventTitle + " begins on " + startMonth + " " + startDay + ", " + startYear + " at " + startHour + ":" + startMinute + " " + startChrono + ".");
+		$("#event-success").append(successDetails);
+
+		$("#event-success").fadeIn(1000);
 
 		anEvent.save(null, {
 			success: function(anEvent) {
@@ -223,7 +229,6 @@ var signUp = function() {
 		newUser.set("username", userEmail);
 		newUser.set("password", userPassword);
 		newUser.set("email", userEmail);
-		user.set("email", "email@example.com");
 
 		user.signUp(null, {
 		  success: function(newUser) {
@@ -244,6 +249,15 @@ var signIn = function() {
 
 	var userEmail = $("#email").val();
 	var userPswd = $("#userPswd").val();
+
+	Parse.User.logIn("myname", "mypass", {
+	success: function(user) {
+		alert("Success!");
+	},
+	error: function(user, error) {
+		alert("ERROR: " + error.code + " " + error.message);
+	}
+});
 
 }
 
