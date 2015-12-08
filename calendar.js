@@ -74,33 +74,34 @@ var addEvents = function(data) {
 
 // Adds an event to the calendar and the list.
 var addEvent = function(event) {
+
 	var eventTitle = event.get("eventTitle");
 	var eventUrl = event.get("eventUrl");
-	var startTime = event.get("startTime");
-	var endTime = event.get("endTime");
+	var startTotal = event.get("startTotal");
+	var endTotal = event.get("endTotal");
 	var eventLocation = event.get("eventLocation");
 	var eventDesc = event.get("eventDesc");
 
 	// Posting event to list view.
 	if (eventUrl === "") {
 		if (eventLocation === "") {
-			$("#eventList").append("<li><div class='listed-event'><div class='event-title'><h3>" + eventTitle + "</h3></div><ul><li><em>Begins:</em> " + startTime + "</li><li><em>Ends:</em> " + endTime + "</li><li><p>" + eventDesc + "</p></li></ul></div></li>");
+			$("#eventList").append("<li><div class='listed-event'><div class='event-title'><h3>" + eventTitle + "</h3></div><ul><li><em>Begins:</em> " + startTotal + "</li><li><em>Ends:</em> " + endTotal + "</li><li><p>" + eventDesc + "</p></li></ul></div></li>");
 		} else {
-			$("#eventList").append("<li><div class='listed-event'><div class='event-title'><h3>" + eventTitle + "</h3></div><ul><li><em>Location:</em> " + eventLocation + "</li><li><em>Begins:</em> " + startTime + "</li><li><em>Ends:</em> " + endTime + "</li><li><p>" + eventDesc + "</p></li></ul></div></li>");
+			$("#eventList").append("<li><div class='listed-event'><div class='event-title'><h3>" + eventTitle + "</h3></div><ul><li><em>Location:</em> " + eventLocation + "</li><li><em>Begins:</em> " + startTotal + "</li><li><em>Ends:</em> " + endTotal + "</li><li><p>" + eventDesc + "</p></li></ul></div></li>");
 		}
 	} else {
 		if (eventLocation === "") {
-			$("#eventList").append("<li><div class='listed-event'><div class='event-title'><a href='" + eventUrl + "'><h3>" + eventTitle + "</h3></a></div><ul><li><em>Begins:</em> " + startTime + "</li><li><em>Ends:</em> " + endTime + "</li><li><p>" + eventDesc + "</p></li></ul></div></li>");
+			$("#eventList").append("<li><div class='listed-event'><div class='event-title'><a href='" + eventUrl + "'><h3>" + eventTitle + "</h3></a></div><ul><li><em>Begins:</em> " + startTotal + "</li><li><em>Ends:</em> " + endTotal + "</li><li><p>" + eventDesc + "</p></li></ul></div></li>");
 		} else {
-			$("#eventList").append("<li><div class='listed-event'><div class='event-title'><a href='" + eventUrl + "'><h3>" + eventTitle + "</h3></a></div><ul><li><em>Location:</em> " + eventLocation + "</li><li><em>Begins:</em> " + startTime + "</li><li><em>Ends:</em> " + endTime + "</li><li><p>" + eventDesc + "</p></li></ul></div></li>");
+			$("#eventList").append("<li><div class='listed-event'><div class='event-title'><a href='" + eventUrl + "'><h3>" + eventTitle + "</h3></a></div><ul><li><em>Location:</em> " + eventLocation + "</li><li><em>Begins:</em> " + startTotal + "</li><li><em>Ends:</em> " + endTotal + "</li><li><p>" + eventDesc + "</p></li></ul></div></li>");
 		}
 	}
 
 	// Posting event to calendar.
 	var theEvent = {
 		title: eventTitle,
-		start: startTime,
-		end: endTime,
+		start: startTotal,
+		end: endTotal,
 		description: eventDesc,
 		url: eventUrl,
 	};
@@ -162,8 +163,20 @@ var submitEvent = function() {
 		var anEvent = new Event();
 		anEvent.set("eventTitle", eventTitle);
 		anEvent.set("eventUrl", eventUrl);
-		anEvent.set("startTime", startTime);
-		anEvent.set("endTime", endTime);
+		anEvent.set("startMonth", startMonth);
+		anEvent.set("startDay", startDay);
+		anEvent.set("startYear", startYear);
+		anEvent.set("startHour", startHour);
+		anEvent.set("startMinute", startMinute);
+		anEvent.set("startChrono", startChrono);
+		anEvent.set("startTotal", startTime);
+		anEvent.set("endMonth", endMonth);
+		anEvent.set("endDay", endDay);
+		anEvent.set("endYear", endYear);
+		anEvent.set("endHour", endHour);
+		anEvent.set("endMinute", endMinute);
+		anEvent.set("endChrono", endChrono)
+		anEvent.set("endTotal", endTime);
 		anEvent.set("eventLocation", eventLocation);
 		anEvent.set("eventDesc", eventDesc);
 
@@ -178,8 +191,6 @@ var submitEvent = function() {
 			success: function(anEvent) {
 				$("#newTitle").empty();
 				$("#eventUrl").empty();
-				$("#startTime").empty();
-				$("#endTime").empty();
 				$("#eventLocation").empty();
 				$("#eventDesc").empty();
 			},
@@ -227,7 +238,7 @@ var signUp = function() {
 
 		var newUser = new Parse.User();
 		newUser.set("username", userEmail);
-		newUser.set("password", userPassword);
+		newUser.set("password", userPswd);
 		newUser.set("email", userEmail);
 
 		user.signUp(null, {
@@ -250,7 +261,7 @@ var logIn = function() {
 	var userEmail = $("#email").val();
 	var userPswd = $("#userPswd").val();
 
-	Parse.User.logIn("myname", "mypass", {
+	Parse.User.logIn(userEmail, userPswd, {
 	success: function(user) {
 		alert("Success!");
 	},
