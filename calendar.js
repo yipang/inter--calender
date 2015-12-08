@@ -139,8 +139,6 @@ var submitEvent = function() {
 	var endChrono = $("#endChrono").val();
 	var endTime = (endMonth + " " + endDay + ", " + endYear + " " + endHour + ":" + endMinute + " " + endChrono);
 
-	alert(endTime);
-
 	var eventLocation = $("#eventLocation").val();
 	var eventDesc = $("#eventDesc").val();
 
