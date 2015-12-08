@@ -77,7 +77,19 @@ var addEvent = function(event) {
 
 	var eventTitle = event.get("eventTitle");
 	var eventUrl = event.get("eventUrl");
+	var startMonth = event.get("startMonth");
+	var startDay = event.get("startDay");
+	var startYear = event.get("startYear");
+	var startHour = event.get("startHour");
+	var startMinute = event.get("startMinute");
+	var startChrono = event.get("startChrono");
 	var startTotal = event.get("startTotal");
+	var endMonth = event.get("endMonth");
+	var endDay = event.get("endDay");
+	var endYear = event.get("endYear");
+	var endHour = event.get("endHour");
+	var endMinute = event.get("endMinute");
+	var endChrono = event.get("endChrono");
 	var endTotal = event.get("endTotal");
 	var eventLocation = event.get("eventLocation");
 	var eventDesc = event.get("eventDesc");
@@ -85,15 +97,15 @@ var addEvent = function(event) {
 	// Posting event to list view.
 	if (eventUrl === "") {
 		if (eventLocation === "") {
-			$("#eventList").append("<li><div class='listed-event'><div class='event-title'><h3>" + eventTitle + "</h3></div><ul><li><em>Begins:</em> " + startTotal + "</li><li><em>Ends:</em> " + endTotal + "</li><li><p>" + eventDesc + "</p></li></ul></div></li>");
+			$("#eventList").append("<li><div class='listed-event'><div class='event-title'><h3>" + eventTitle + "</h3></div><ul><li><em>Begins:</em> " + startMonth + " " + startDay + ", " + startYear + " - " + startHour + ":" + startMinute + " " + startChrono + "</li><li><em>Ends:</em> " + endMonth + " " + endDay + ", " + endYear + " - " + endHour + ":" + endMinute + " " + endChrono + "</li><li><p>" + eventDesc + "</p></li></ul></div></li>");
 		} else {
-			$("#eventList").append("<li><div class='listed-event'><div class='event-title'><h3>" + eventTitle + "</h3></div><ul><li><em>Location:</em> " + eventLocation + "</li><li><em>Begins:</em> " + startTotal + "</li><li><em>Ends:</em> " + endTotal + "</li><li><p>" + eventDesc + "</p></li></ul></div></li>");
+			$("#eventList").append("<li><div class='listed-event'><div class='event-title'><h3>" + eventTitle + "</h3></div><ul><li><em>Location:</em> " + eventLocation + "</li><li><em>Begins:</em> " + startMonth + " " + startDay + ", " + startYear + " - " + startHour + ":" + startMinute + " " + startChrono + "</li><li><em>Ends:</em> " + endMonth + " " + endDay + ", " + endYear + " - " + endHour + ":" + endMinute + " " + endChrono + "</li><li><p>" + eventDesc + "</p></li></ul></div></li>");
 		}
 	} else {
 		if (eventLocation === "") {
-			$("#eventList").append("<li><div class='listed-event'><div class='event-title'><a href='" + eventUrl + "'><h3>" + eventTitle + "</h3></a></div><ul><li><em>Begins:</em> " + startTotal + "</li><li><em>Ends:</em> " + endTotal + "</li><li><p>" + eventDesc + "</p></li></ul></div></li>");
+			$("#eventList").append("<li><div class='listed-event'><div class='event-title'><a href='" + eventUrl + "'><h3>" + eventTitle + "</h3></a></div><ul><li><em>Begins:</em> " + startMonth + " " + startDay + ", " + startYear + " - " + startHour + ":" + startMinute + " " + startChrono + "</li><li><em>Ends:</em> " + endMonth + " " + endDay + ", " + endYear + " - " + endHour + ":" + endMinute + " " + endChrono + "</li><li><p>" + eventDesc + "</p></li></ul></div></li>");
 		} else {
-			$("#eventList").append("<li><div class='listed-event'><div class='event-title'><a href='" + eventUrl + "'><h3>" + eventTitle + "</h3></a></div><ul><li><em>Location:</em> " + eventLocation + "</li><li><em>Begins:</em> " + startTotal + "</li><li><em>Ends:</em> " + endTotal + "</li><li><p>" + eventDesc + "</p></li></ul></div></li>");
+			$("#eventList").append("<li><div class='listed-event'><div class='event-title'><a href='" + eventUrl + "'><h3>" + eventTitle + "</h3></a></div><ul><li><em>Location:</em> " + eventLocation + "</li><li><em>Begins:</em> " + startMonth + " " + startDay + ", " + startYear + " - " + startHour + ":" + startMinute + " " + startChrono + "</li><li><em>Ends:</em> " + endMonth + " " + endDay + ", " + endYear + " - " + endHour + ":" + endMinute + " " + endChrono + "</li><li><p>" + eventDesc + "</p></li></ul></div></li>");
 		}
 	}
 
@@ -222,11 +234,11 @@ var signUp = function() {
 		var warning = "<li class='warning'>You cannot create an account without:</li>";
 		$("#login-errors").append(warning);
 		if (userEmail === "") {
-			var error = "<li>A valid email address.</li>";
+			var error = "<li>... a valid email address.</li>";
 			$("#login-errors").append(error);
 		}
 		if (userPswd === "") {
-			var error = "<li>A password.</li>";
+			var error = "<li>... a password.</li>";
 			$("#login-errors").append(error);
 		}
 		$("#login-errors").fadeIn(1000);
