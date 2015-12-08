@@ -180,14 +180,13 @@ var submitEvent = function() {
 		anEvent.set("eventLocation", eventLocation);
 		anEvent.set("eventDesc", eventDesc);
 
-		var success = "<li class='success-declare'>Event submitted!</li>";
-		$("#event-success").append(success);
-		var successDetails = (eventTitle + " begins on " + startMonth + " " + startDay + ", " + startYear + " at " + startHour + ":" + startMinute + " " + startChrono + ".");
-		$("#event-success").append(successDetails);
-		$("#event-success").fadeIn(1000);
-
 		anEvent.save(null, {
 			success: function(anEvent) {
+				var success = "<li class='success-declare'>Event submitted!</li>";
+				$("#event-success").append(success);
+				var successDetails = (eventTitle + " begins on " + startMonth + " " + startDay + ", " + startYear + " at " + startHour + ":" + startMinute + " " + startChrono + ".");
+				$("#event-success").append(successDetails);
+				$("#event-success").fadeIn(1000);
 				$("#newTitle").val("");
 				$("#eventUrl").val("");
 				$("#eventLocation").val("");
