@@ -187,12 +187,13 @@ var submitEvent = function() {
 
 		$("#event-success").fadeIn(1000);
 
+		$("#newTitle").empty();
+		$("#eventUrl").empty();
+		$("#eventLocation").empty();
+		$("#eventDesc").empty();
+
 		anEvent.save(null, {
 			success: function(anEvent) {
-				$("#newTitle").empty();
-				$("#eventUrl").empty();
-				$("#eventLocation").empty();
-				$("#eventDesc").empty();
 			},
 			error: function(anEvent, error) {
 				alert("ERROR: " + error.message);
