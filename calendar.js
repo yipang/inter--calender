@@ -32,7 +32,7 @@ $(document).ready(function() {
 		},
 		eventClick: function( event, jsEvent, view ) { 
 			$('#modalTitle').html(event.title);
-            $('#modalBody').html("<p>description: " + event.description + "</p><p>Event URL page: " + event.url);
+            $('#modalBody').html("<p><b>Description</b>: " + event.description + "<p><b>Start Time</b>: " + Date.parse(event.start) + "</p>");
             $('#eventUrl').attr('href',event.url);
             $('#fullCalModal').modal();
 		},
