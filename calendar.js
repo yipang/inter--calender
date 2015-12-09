@@ -38,7 +38,22 @@ $(document).ready(function() {
         },
         eventClick: function(event, jsEvent, view) { 
             $(".modalTitle").html(event.title);
-            $(".modalBody").html("<p><b>Start Time:</b> " + Date.parse(event.start) + "</p><p><b>Description</b>: " + event.description + "</p><p><a href= " + event.url + " target='_blank'>View Event Page</a></p>");
+            var startArr = event.start.toString().split(" ");
+            var startTimeArr = startArr[4].split(":");
+            var startTime4dig = startTimeArr[0] + startTimeArr[1];
+            var startTime = getFormattedTime(startTime4dig);
+            var startDateText = startArr[0] + " " + startArr[1] + " " + startArr[2] + ", " + startArr[3] + " at " + startTime;
+            if (event.end) {
+            var endArr = event.end.toString().split(" ");
+            var endTimeArr = endArr[4].split(":");
+            var endTime4dig = endTimeArr[0] + endTimeArr[1];
+            var endTime = getFormattedTime(endTime4dig);
+            var endDateText = endArr[0] + " " + endArr[1] + " " + endArr[2] + ", " + endArr[3] + " at " + endTime;
+            } else {
+                endDateText = "End Date Not Specified"
+            }
+            
+            $(".modalBody").html("<p><b>Start Time:</b> " + startDateText +"</p><p><b>End Time:</b> " + endDateText + "</p><p><b>Description</b>: " + event.description + "</p><p><a href= " + event.url + " target='_blank'>View Event Page</a></p>");
 
             $("#fullCalModal").modal();
             return false;
