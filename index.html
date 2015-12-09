@@ -20,11 +20,13 @@
 		<meta name="keywords" content="calendar, ischool, uw, washington, university" />
 
 		<!-- Importing Google's Angular FullCalendar CSS and JavaScript. -->
+
 		<link href="fullcalendar-2.4.0/fullcalendar.css" rel="stylesheet" />
 		<link href="fullcalendar-2.4.0/fullcalendar.print.css" rel="stylesheet" media="print" />
 		<script src="fullcalendar-2.4.0/lib/moment.min.js"></script>
 		<script src="fullcalendar-2.4.0/lib/jquery.min.js"></script>
 		<script src="fullcalendar-2.4.0/fullcalendar.min.js"></script>
+			<script type='text/javascript' src='fullcalendar-2.4.0/gcal.js'></script>
 		
 		<!-- Bootstrap. -->
 		<script src="bootstrap/bootstrap.js"></script>
@@ -343,6 +345,7 @@
 
 							</form>
 
+
 							<!-- Displays errors regarding event submission. See calendar.js. -->
 							<ul id="event-errors" class="errors">
 							</ul>
@@ -352,6 +355,21 @@
 
 						</div>
 
+					</div>
+
+					<div class="googleCal container" id="goog-div">
+						<div class="col-sm-6">
+							<h2>
+								<i class="fa fa-google"></i>
+								Add Google Calendar
+							</h2>
+							<form>
+								<label for="googleID">Calendar ID</label><br />
+								<input name="googleID" id="googleID" placeholder="Insert ID here."></input>
+								<br />
+								<button onClick="submitGoogle()">Add</button>
+							</form> 
+						</div>
 					</div>
 
 					<!-- login-div: Sign up or sign in here. -->

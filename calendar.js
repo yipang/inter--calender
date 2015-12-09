@@ -10,7 +10,7 @@ Parse.initialize("CIawsCOoro1K3GHQq4teHxwzDyRjE8MuUXauh4Sm", "Mrrvv6XeBDSA6kkWWS
 
 // Initializing Event object.
 var Event = Parse.Object.extend("Event");
-var GoogEvent = Parse.Object.extend("GoogEvent");
+var Source = Parse.Object.extend("Source");
 
 // Checking if the user is logged in.
 var currentUser = Parse.User.current();
@@ -34,6 +34,7 @@ $(document).ready(function() {
     $("#login-div").hide();
     $("#logout-button").hide();
     $("#add-event-button").hide();
+    $("#goog-div").hide();
 
     if (currentUser) {
         $("#logout-button").show();
@@ -48,7 +49,7 @@ $(document).ready(function() {
             center: 'title',
             right: 'month,agendaWeek,agendaDay'
         },
-         eventClick: function(event, jsEvent, view) {
+        eventClick: function(event, jsEvent, view) {
             $(".modalTitle").html(event.title);
             
             var startArr = event.start.toString().split(" ");
@@ -83,7 +84,7 @@ $(document).ready(function() {
             var urlTag;
             if (event.url) {
                 urlTag = "</p><p><a href= " + event.url + " target='_blank'>View Event Page</a></p>";
-            }else {
+            } else {
                 urlTag = "</p>";
             }          
             $(".modalBody").html("<p><b>Start Time:</b> " + startDateText +"</p><p><b>End Time:</b> " + endDateText + "</p><p><b>Description</b>: " + event.description + urlTag);
@@ -93,7 +94,11 @@ $(document).ready(function() {
         },
         eventColor: "#603CA2",
         businessHours: false,
-        editable: false
+        editable: false,
+        googleCalendarApiKey: 'AIzaSyBln9L3zS0RV6Q3ipJp5LIXPvdD55upoXg',
+        events: {
+            googleCalendarId: 'en.usa#holiday@group.v.calendar.google.com'
+        }
 
     });
 
@@ -131,7 +136,31 @@ var getEvents = function() {
             addEvents(results);
         }
     });
+
 }
+
+var addGoogles = function(data) {
+
+    for (i in data) {
+        addGoogle(data[i]);
+    }
+
+}
+
+
+var addGoogle = function(goog) {
+
+    var googleID = goog.get("googleID");
+
+    $("#calendar").fullCalendar({
+        googleCalendarApiKey: "AIzaSyBln9L3zS0RV6Q3ipJp5LIXPvdD55upoXg",
+        events: {
+            googleCalendarId: googleID
+        }
+    });
+
+}
+
 
 // Loops through acquired events and adds events individually.
 var addEvents = function(data) {
@@ -189,6 +218,30 @@ var addEvent = function(event) {
         url: eventUrl,
     };
     $("#calendar").fullCalendar("renderEvent", theEvent, true);
+
+}
+
+var submitGoogle = function() {
+
+    var googleID = $("#googleID").val();
+
+    if (googleID === "") {
+
+
+    } else {
+
+        var aSource = new Source();
+        aSource.set("googleID", googleID);
+        aSource.save(null, {
+            success: function(anEvent) {
+                 alert("SUCCESS.");
+            },
+            error: function(anEvent, error) {
+                alert("ERROR: " + error.message);
+            }
+        });
+
+    }
 
 }
 
@@ -535,6 +588,7 @@ var showCalendar = function() {
 var revealEventForm = function() {
 
     $("#add-event-div").fadeIn(1000);
+    $("#goog-div").fadeIn(1000);
 
 }
 
