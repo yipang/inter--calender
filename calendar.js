@@ -48,9 +48,29 @@ $(document).ready(function() {
             center: 'title',
             right: 'month,agendaWeek,agendaDay'
         },
-        eventClick: function(event, jsEvent, view) { 
+        eventClick: function(event, jsEvent, view) {
+            alert("clicked");
             $(".modalTitle").html(event.title);
+            
             var startArr = event.start.toString().split(" ");
+            var monthArray = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"];
+            var numMonth = monthArray.indexOf(startArr[1]) + 1;
+            var season;
+
+            if (numMonth == 1 || numMonth == 2 || numMonth == 12) {
+                season = "winter";
+            } else if (numMonth > 2 && numMonth < 6) {
+                season = "spring";
+            } else if (numMonth > 6 && numMonth < 9) {
+                season = "summer";
+            } else {
+                season = "fall";
+            }
+
+
+            alert(season);
+            $(".modalTitle").css("background-image", 'url("img/"' + season + '".jpg")');
+
             var startTimeArr = startArr[4].split(":");
             var startTime4dig = startTimeArr[0] + startTimeArr[1];
             var startTime = getFormattedTime(startTime4dig);
