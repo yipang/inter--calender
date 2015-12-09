@@ -113,12 +113,12 @@ var getEvents = function() {
     $("#eventList").empty();
 
     var query = new Parse.Query(Event);
+    query.ascending("numericStartDate");
     query.find({
         success:function(results) {
             addEvents(results);
         }
     });
-
 }
 
 // Loops through acquired events and adds events individually.
