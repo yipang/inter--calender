@@ -171,6 +171,18 @@ var submitEvent = function() {
 
         var monthArray = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
         var numMonth = monthArray.indexOf(startMonth) + 1;
+        var season;
+
+        if (numMonth == 1 || numMonth == 2 ) {
+            season = "winter";
+        } else if (numMonth > 2 && numMonth < 6) {
+            season = "spring";
+        } else if (numMonth > 6 && numMonth < 9) {
+            season = "summer";
+        } else {
+            season = "fall";
+        }
+
         var numericDate = "" + numMonth + "" + startDay + "" + startYear;
 
         if (eventTitle === "" || eventDesc === "") {
@@ -209,6 +221,7 @@ var submitEvent = function() {
             anEvent.set("eventLocation", eventLocation);
             anEvent.set("eventDesc", eventDesc);
             anEvent.set("numericDate", numericDate);
+            anEvent.set("season", season);
 
             anEvent.save(null, {
                 success: function(anEvent) {
