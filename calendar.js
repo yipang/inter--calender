@@ -169,6 +169,10 @@ var submitEvent = function() {
         var eventLocation = $("#eventLocation").val();
         var eventDesc = $("#eventDesc").val();
 
+        var monthArray = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+        var numMonth = monthArray.indexOf(startMonth) + 1;
+        var numericDate = "" + numMonth + "" + startDay + "" + startYear;
+
         if (eventTitle === "" || eventDesc === "") {
 
             var warning = "<li class='warning'>Error code: PEBCAK. Please resolve:</li>";
@@ -204,6 +208,7 @@ var submitEvent = function() {
             anEvent.set("endTotal", endTime);
             anEvent.set("eventLocation", eventLocation);
             anEvent.set("eventDesc", eventDesc);
+            anEvent.set("numericDate", numericDate);
 
             anEvent.save(null, {
                 success: function(anEvent) {
