@@ -49,7 +49,7 @@ $(document).ready(function() {
             right: 'month,agendaWeek,agendaDay'
         },
         eventClick: function(event, jsEvent, view) {
-            //alert("clicked");
+            alert("clicked");
             $(".modalTitle").html(event.title);
             
             var startArr = event.start.toString().split(" ");
@@ -69,7 +69,7 @@ $(document).ready(function() {
 
 
             alert(season);
-            $(".modalHeader").css("background-image", 'url("img/winter.jpg")');
+            $(".modalTitle").css("background-image", 'url("img/"' + season + '".jpg")');
 
             var startTimeArr = startArr[4].split(":");
             var startTime4dig = startTimeArr[0] + startTimeArr[1];
@@ -84,13 +84,8 @@ $(document).ready(function() {
             } else {
                 endDateText = "End Date Not Specified"
             }
-            var urlTag;
-            if (event.url) {
-                urlTag = "</p><p><a href= " + event.url + " target='_blank'>View Event Page</a></p>";
-            }else {
-                urlTag = "</p>";
-            }          
-            $(".modalBody").html("<p><b>Start Time:</b> " + startDateText +"</p><p><b>End Time:</b> " + endDateText + "</p><p><b>Description</b>: " + event.description + urlTag);
+            
+            $(".modalBody").html("<p><b>Start Time:</b> " + startDateText +"</p><p><b>End Time:</b> " + endDateText + "</p><p><b>Description</b>: " + event.description + "</p><p><a href= " + event.url + " target='_blank'>View Event Page</a></p>");
 
             $("#fullCalModal").modal();
             return false;
@@ -110,17 +105,6 @@ $(document).ready(function() {
 ///////////////////////////////////
 // CALENDAR & LIST FUNCTIONALITY //
 ///////////////////////////////////
-
-
-//changing military time in 4 digit string to standard time string
-var getFormattedTime = function (fourDigitTime) {
-    var hours24 = parseInt(fourDigitTime.substring(0, 2),10);
-    var hours = ((hours24 + 11) % 12) + 1;
-    var amPm = hours24 > 11 ? 'pm' : 'am';
-    var minutes = fourDigitTime.substring(2);
-
-    return hours + ':' + minutes + amPm;
-};
 
 // Empties calendar and list; queries Parse for events.
 var getEvents = function() {
@@ -268,14 +252,64 @@ var submitEvent = function() {
             startMZero = numMonthStart;
         }
 
-        var numericStartDate = startYear + "" + startMZero + "" + startDayZero + "" + startCNum + "" + startHour + "" + startMinute;
-        alert(numericStartDate);
-        var numericEndDate // do end date here, same format
+        var startHZero;
+        if (startHour < 10) {
+            startHZero = "0" + startHour;
+        } else {
+            startHZero = startHour;
+        }
 
-        if (eventTitle === "" || eventDesc === "") {
+        if (numMonthEnd == 1 || numMonthEnd == 2 || numMonthEnd == 12) {
+            season = "winter";
+        } else if (numMonthEnd > 2 && numMonthEnd < 6) {
+            season = "spring";
+        } else if (numMonthEnd > 6 && numMonthEnd < 9) {
+            season = "summer";
+        } else {
+            season = "fall";
+        }
+
+        var endCNum;
+        if (endChrono == "AM") {
+            endCNum = 1;
+        } else {
+            endCNum = 2;
+        }
+
+        var endDayZero;
+        if (endDay < 10) {
+            endDayZero = "0" + endDay;
+        } else {
+            endDayZero = endDay;
+        }
+
+        var endMZero;
+        if (numMonthEnd < 10) {
+            endMZero = "0" + numMonthEnd;
+        } else {
+            endMZero = numMonthEnd;
+        }
+
+        var endHZero;
+        if (endHour < 10) {
+            endHZero = "0" + endHour;
+        } else {
+            endHZero = endHour;
+        }
+
+        var numericStartDate = startYear + "" + startMZero + "" + startDayZero + "" + startCNum + "" + startHZero + "" + startMinute;
+        var numericEndDate = endYear + "" + endMZero + "" + endDayZero + "" + endCNum + "" + endHZero + "" + endMinute;
+
+        if (eventTitle === "" || eventDesc === "" || parseInt(numericEndDate) <= parseInt(numericStartDate)) {
 
             var warning = "<li class='warning'>Error code: PEBCAK. Please resolve:</li>";
             $("#event-errors").append(warning);
+            
+            if (parseInt(numericEndDate) <= parseInt(numericStartDate)) {
+                var error = "<li>You should make end time after the start time.</li>";
+                $("#event-errors").append(error);
+            }
+
             if (eventTitle === "") {
                 var error = "<li>You're missing an event title.</li>";
                 $("#event-errors").append(error);
@@ -307,7 +341,8 @@ var submitEvent = function() {
             anEvent.set("endTotal", endTime);
             anEvent.set("eventLocation", eventLocation);
             anEvent.set("eventDesc", eventDesc);
-            anEvent.set("numericDate", numericDate);
+            anEvent.set("numericStartDate", numericStartDate);
+            anEvent.set("numericEndDate", numericEndDate);
             anEvent.set("season", season);
 
             anEvent.save(null, {
