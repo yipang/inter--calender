@@ -1,1 +1,1 @@
-var x = [{googleCalendarId: 'en.usa#holiday@group.v.calendar.google.com'},{googleCalendarId: 'en.russian#holiday@group.v.calendar.google.com'}];
+var x = [{googleCalendarId: 'en.usa#holiday@group.v.calendar.google.com'},{googleCalendarId: 'en.judaism#holiday@group.v.calendar.google.com'}];
