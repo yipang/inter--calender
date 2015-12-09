@@ -356,6 +356,7 @@ var submitEvent = function() {
                     $("#eventUrl").val("");
                     $("#eventLocation").val("");
                     $("#eventDesc").val("");
+                    location.reload();
                 },
                 error: function(anEvent, error) {
                     alert("ERROR: " + error.message);
@@ -419,6 +420,7 @@ var signUp = function() {
                 $("#login-success").append(successDetails);
                 $("#email").val("");
                 $("#userPswd").val("");
+                location.reload();
             },
             error: function(newUser, error) {
                 var warning = "<li class='warning'>Error code: " + error.code + ".</li>";
