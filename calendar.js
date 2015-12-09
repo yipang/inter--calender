@@ -173,7 +173,7 @@ var submitEvent = function() {
         var numMonth = monthArray.indexOf(startMonth) + 1;
         var season;
 
-        if (numMonth == 1 || numMonth == 2 ) {
+        if (numMonth == 1 || numMonth == 2 || numMonth == 12) {
             season = "winter";
         } else if (numMonth > 2 && numMonth < 6) {
             season = "spring";
