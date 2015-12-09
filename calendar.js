@@ -48,28 +48,24 @@ $(document).ready(function() {
             center: 'title',
             right: 'month,agendaWeek,agendaDay'
         },
-        eventClick: function(event, jsEvent, view) {
-            alert("clicked");
+         eventClick: function(event, jsEvent, view) {
             $(".modalTitle").html(event.title);
             
             var startArr = event.start.toString().split(" ");
-            var monthArray = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"];
+            var monthArray = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
             var numMonth = monthArray.indexOf(startArr[1]) + 1;
             var season;
-
             if (numMonth == 1 || numMonth == 2 || numMonth == 12) {
                 season = "winter";
             } else if (numMonth > 2 && numMonth < 6) {
                 season = "spring";
-            } else if (numMonth > 6 && numMonth < 9) {
+            } else if (numMonth > 5 && numMonth < 9) {
                 season = "summer";
             } else {
                 season = "fall";
             }
 
-
-            alert(season);
-            $(".modalTitle").css("background-image", 'url("img/"' + season + '".jpg")');
+            $(".modal-header").css("background-image", "url('img/" + season + ".jpg')");
 
             var startTimeArr = startArr[4].split(":");
             var startTime4dig = startTimeArr[0] + startTimeArr[1];
@@ -84,8 +80,13 @@ $(document).ready(function() {
             } else {
                 endDateText = "End Date Not Specified"
             }
-            
-            $(".modalBody").html("<p><b>Start Time:</b> " + startDateText +"</p><p><b>End Time:</b> " + endDateText + "</p><p><b>Description</b>: " + event.description + "</p><p><a href= " + event.url + " target='_blank'>View Event Page</a></p>");
+            var urlTag;
+            if (event.url) {
+                urlTag = "</p><p><a href= " + event.url + " target='_blank'>View Event Page</a></p>";
+            }else {
+                urlTag = "</p>";
+            }          
+            $(".modalBody").html("<p><b>Start Time:</b> " + startDateText +"</p><p><b>End Time:</b> " + endDateText + "</p><p><b>Description</b>: " + event.description + urlTag);
 
             $("#fullCalModal").modal();
             return false;
@@ -105,6 +106,17 @@ $(document).ready(function() {
 ///////////////////////////////////
 // CALENDAR & LIST FUNCTIONALITY //
 ///////////////////////////////////
+
+//changing military time in 4 digit string to standard time string
+var getFormattedTime = function (fourDigitTime) {
+    var hours24 = parseInt(fourDigitTime.substring(0, 2),10);
+    var hours = ((hours24 + 11) % 12) + 1;
+    var amPm = hours24 > 11 ? 'pm' : 'am';
+    var minutes = fourDigitTime.substring(2);
+
+    return hours + ':' + minutes + amPm;
+};
+
 
 // Empties calendar and list; queries Parse for events.
 var getEvents = function() {
