@@ -368,7 +368,8 @@ var submitEvent = function() {
                     $("#eventUrl").val("");
                     $("#eventLocation").val("");
                     $("#eventDesc").val("");
-                    location.reload();
+                    //location.reload();
+                    $('#calendar').fullCalendar( 'gotoDate', startYear + "-" + startMonth + "-" + startDay );
                 },
                 error: function(anEvent, error) {
                     alert("ERROR: " + error.message);
