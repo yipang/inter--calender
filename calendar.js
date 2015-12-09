@@ -49,7 +49,7 @@ $(document).ready(function() {
             right: 'month,agendaWeek,agendaDay'
         },
         eventClick: function(event, jsEvent, view) {
-            alert("clicked");
+            //alert("clicked");
             $(".modalTitle").html(event.title);
             
             var startArr = event.start.toString().split(" ");
@@ -69,7 +69,7 @@ $(document).ready(function() {
 
 
             alert(season);
-            $(".modalTitle").css("background-image", 'url("img/"' + season + '".jpg")');
+            $(".modalHeader").css("background-image", 'url("img/winter.jpg")');
 
             var startTimeArr = startArr[4].split(":");
             var startTime4dig = startTimeArr[0] + startTimeArr[1];
@@ -84,8 +84,13 @@ $(document).ready(function() {
             } else {
                 endDateText = "End Date Not Specified"
             }
-            
-            $(".modalBody").html("<p><b>Start Time:</b> " + startDateText +"</p><p><b>End Time:</b> " + endDateText + "</p><p><b>Description</b>: " + event.description + "</p><p><a href= " + event.url + " target='_blank'>View Event Page</a></p>");
+            var urlTag;
+            if (event.url) {
+                urlTag = "</p><p><a href= " + event.url + " target='_blank'>View Event Page</a></p>";
+            }else {
+                urlTag = "</p>";
+            }          
+            $(".modalBody").html("<p><b>Start Time:</b> " + startDateText +"</p><p><b>End Time:</b> " + endDateText + "</p><p><b>Description</b>: " + event.description + urlTag);
 
             $("#fullCalModal").modal();
             return false;
@@ -105,6 +110,17 @@ $(document).ready(function() {
 ///////////////////////////////////
 // CALENDAR & LIST FUNCTIONALITY //
 ///////////////////////////////////
+
+
+//changing military time in 4 digit string to standard time string
+var getFormattedTime = function (fourDigitTime) {
+    var hours24 = parseInt(fourDigitTime.substring(0, 2),10);
+    var hours = ((hours24 + 11) % 12) + 1;
+    var amPm = hours24 > 11 ? 'pm' : 'am';
+    var minutes = fourDigitTime.substring(2);
+
+    return hours + ':' + minutes + amPm;
+};
 
 // Empties calendar and list; queries Parse for events.
 var getEvents = function() {
