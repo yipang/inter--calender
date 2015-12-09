@@ -20,6 +20,14 @@ $(document).ready(function() {
     $("#listView").hide();
 	$("#add-event-div").hide();
 	$("#login-div").hide();
+	$("#logout-button").hide();
+	$("#add-event-button").hide();
+
+	if (currentUser) {
+		$("#logout-button").show();
+		$("#add-event-button").show();
+		$("#login-button").hide();
+	}
 
 	// Initializing fullCalendar.
 	$("#calendar").fullCalendar({
@@ -224,9 +232,9 @@ var submitEvent = function() {
 
 }
 
-////////////////////////////
-// USER SIGN UP & LOG IN  //
-////////////////////////////
+//////////////////////////////////////
+// USER SIGN UP, LOG IN, & LOG OUT  //
+//////////////////////////////////////
 
 // signUp adds a newly created user to the Parse database.
 var signUp = function() {
@@ -320,6 +328,8 @@ var logIn = function() {
 			Parse.User.logIn(userEmail, userPswd, {
 				success: function(user) {
 					var success = "<li class='success-declare'>You're now logged in, " + userEmail + "!</li>";
+					$("#login-button").hide();
+					location.reload();
 				},
 				error: function(user, error) {
 					var warning = "<li class='warning'>Error code: " + error.code + ".</li>";
@@ -332,6 +342,16 @@ var logIn = function() {
 
 		}
 	}
+
+}
+
+// Logs the user out and hides the log out button.
+var logOut = function() {
+
+	Parse.User.logOut();
+	$("#logout-button").hide();
+	$("#login-button").show();
+	location.reload();
 
 }
 

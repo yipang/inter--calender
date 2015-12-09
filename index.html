@@ -406,16 +406,22 @@
 			<div id="user-buttons">
 
 				<!-- Unhides event form onclick. -->
-				<div class="button-div">
+				<div class="button-div" id="add-event-button">
 					<a href="#add-event-div" onclick="revealEventForm()">
 						Add Event
 					</a>
 				</div>
 
 				<!-- Unhides login form onclick. -->
-				<div class="button-div">
+				<div class="button-div" id="login-button">
 					<a href="#login-div" onclick="revealLoginForm()">
 						Sign Up or Log In
+					</a>
+				</div>
+
+				<div class="button-div" id="logout-button">
+					<a href="#" onclick="logOut()">
+						Log Out
 					</a>
 				</div>
 
