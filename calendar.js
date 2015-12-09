@@ -27,7 +27,6 @@ if (currentUser) {
 */
 
 $(document).ready(function() {
-	alert(x);
     // Hiding divs for optimal experience.
     $("#listView").hide();
     $("#add-event-div").hide();
@@ -51,7 +50,6 @@ $(document).ready(function() {
         },
         eventClick: function(event, jsEvent, view) {
             $(".modalTitle").html(event.title);
-            alert(x);
             
             var startArr = event.start.toString().split(" ");
             var monthArray = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
