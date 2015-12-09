@@ -27,7 +27,7 @@ if (currentUser) {
 */
 
 $(document).ready(function() {
-
+	alert(x);
     // Hiding divs for optimal experience.
     $("#listView").hide();
     $("#add-event-div").hide();
@@ -51,6 +51,7 @@ $(document).ready(function() {
         },
         eventClick: function(event, jsEvent, view) {
             $(".modalTitle").html(event.title);
+            alert(x);
             
             var startArr = event.start.toString().split(" ");
             var monthArray = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
@@ -96,9 +97,7 @@ $(document).ready(function() {
         businessHours: false,
         editable: false,
         googleCalendarApiKey: 'AIzaSyBln9L3zS0RV6Q3ipJp5LIXPvdD55upoXg',
-        events: {
-            googleCalendarId: 'en.usa#holiday@group.v.calendar.google.com'
-        }
+        eventSources: x
 
     });
 
@@ -230,16 +229,7 @@ var submitGoogle = function() {
 
     } else {
 
-        var aSource = new Source();
-        aSource.set("googleID", googleID);
-        aSource.save(null, {
-            success: function(anEvent) {
-                 alert("SUCCESS.");
-            },
-            error: function(anEvent, error) {
-                alert("ERROR: " + error.message);
-            }
-        });
+        //var googs = x;
 
     }
 
