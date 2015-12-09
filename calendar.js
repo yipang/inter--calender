@@ -162,7 +162,7 @@ var submitEvent = function() {
 
 		if (eventTitle === "" || eventDesc === "") {
 
-			var warning = "<li class='warning'>Error detected: PEBCAK. Please resolve:</li>";
+			var warning = "<li class='warning'>Error code: PEBCAK. Please resolve:</li>";
 			$("#event-errors").append(warning);
 			if (eventTitle === "") {
 				var error = "<li>You're missing an event title.</li>";
@@ -274,7 +274,7 @@ var signUp = function() {
 			error: function(newUser, error) {
 				var warning = "<li class='warning'>Error code: " + error.code + ".</li>";
 				$("#login-errors").append(warning);
-				var parseError = "<li>" + error.message + "</li>";
+				var parseError = "<li>" + error.message + ".</li>";
 				$("#login-errors").append(parseError);
 				$("#login-errors").fadeIn(1000);
 			}
