@@ -10,9 +10,21 @@ Parse.initialize("CIawsCOoro1K3GHQq4teHxwzDyRjE8MuUXauh4Sm", "Mrrvv6XeBDSA6kkWWS
 
 // Initializing Event object.
 var Event = Parse.Object.extend("Event");
+var GoogEvent = Parse.Object.extend("GoogEvent");
 
 // Checking if the user is logged in.
 var currentUser = Parse.User.current();
+// Acquiring userName.
+/*
+if (currentUser) {
+    var userName = currentUser.get("username");
+    var greeting = "Welcome, " + userName + "! You can now post events.";
+    alert(greeting);
+    $("#greeting-text").val(greeting);
+} else {
+    $("#greeting").append("Welcome to the iSchool Calendar. You're not logged in currently.");
+}
+*/
 
 $(document).ready(function() {
 
@@ -185,20 +197,44 @@ var submitEvent = function() {
         var eventDesc = $("#eventDesc").val();
 
         var monthArray = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-        var numMonth = monthArray.indexOf(startMonth) + 1;
+        var numMonthStart = monthArray.indexOf(startMonth) + 1;
+        var numMonthEnd = monthArray.indexOf(endMonth) + 1;
         var season;
 
-        if (numMonth == 1 || numMonth == 2 || numMonth == 12) {
+        if (numMonthStart == 1 || numMonthStart == 2 || numMonthStart == 12) {
             season = "winter";
-        } else if (numMonth > 2 && numMonth < 6) {
+        } else if (numMonthStart > 2 && numMonthStart < 6) {
             season = "spring";
-        } else if (numMonth > 6 && numMonth < 9) {
+        } else if (numMonthStart > 6 && numMonthStart < 9) {
             season = "summer";
         } else {
             season = "fall";
         }
 
-        var numericDate = "" + numMonth + "" + startDay + "" + startYear;
+        var startCNum;
+        if (startChrono == "AM") {
+            startCNum = 1;
+        } else {
+            startCNum = 2;
+        }
+
+        var startDayZero;
+        if (startDay < 10) {
+            startDayZero = "0" + startDay;
+        } else {
+            startDayZero = startDay;
+        }
+
+        var startMZero;
+        if (numMonthStart < 10) {
+            startMZero = "0" + numMonthStart;
+        } else {
+            startMZero = numMonthStart;
+        }
+
+        var numericStartDate = startYear + "" + startMZero + "" + startDayZero + "" + startCNum + "" + startHour + "" + startMinute;
+        alert(numericStartDate);
+        var numericEndDate // do end date here, same format
 
         if (eventTitle === "" || eventDesc === "") {
 
