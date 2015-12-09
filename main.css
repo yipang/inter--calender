@@ -46,7 +46,11 @@
 			font-size: 12px;
 			font-style: italic;
 		}
+		
+		#googleID {
+			margin-bottom: 20px;
 
+		}
 	/* TITLE: */
 
 		#title-div, .button-div {

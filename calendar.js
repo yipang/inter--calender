@@ -34,11 +34,13 @@ $(document).ready(function() {
     $("#logout-button").hide();
     $("#add-event-button").hide();
     $("#goog-div").hide();
+    $("#view-switcher").hide();
 
     if (currentUser) {
         $("#logout-button").show();
         $("#add-event-button").show();
         $("#login-button").hide();
+        $("#view-switcher").show();
     }
 
     // Initializing fullCalendar.
@@ -65,8 +67,6 @@ $(document).ready(function() {
                 season = "fall";
             }
 
-            $(".modal-header").css("background-image", "url('img/" + season + ".jpg')");
-
             var startTimeArr = startArr[4].split(":");
             var startTime4dig = startTimeArr[0] + startTimeArr[1];
             var startTime = getFormattedTime(startTime4dig);
@@ -85,8 +85,19 @@ $(document).ready(function() {
                 urlTag = "</p><p><a href= " + event.url + " target='_blank'>View Event Page</a></p>";
             } else {
                 urlTag = "</p>";
-            }          
-            $(".modalBody").html("<p><b>Start Time:</b> " + startDateText +"</p><p><b>End Time:</b> " + endDateText + "</p><p><b>Description</b>: " + event.description + urlTag);
+            }     
+            var modalContent = "<p><b>Start Time:</b> " + startDateText +"</p><p><b>End Time:</b> " + endDateText + "</p>"; 
+            $(".modal-header").css("background-image", "url('img/" + season + ".jpg')");
+            if(event.description !== undefined && event.description !== null && event.description !== ""){
+                if(event.description.indexOf(" @ ") != -1) {
+                   dl = event.description.split(" @ ");
+                   modalContent += "<p><b>Description</b>: " + dl[0] + "</p>" + "<p><b>Location</b>: " + dl[1];
+                }
+                else{
+                    modalContent += "<p><b>Description</b>: " + event.description;
+                }
+            }     
+            $(".modalBody").html(modalContent + urlTag);
 
             $("#fullCalModal").modal();
             return false;
@@ -190,6 +201,7 @@ var addEvent = function(event) {
     var endTotal = event.get("endTotal");
     var eventLocation = event.get("eventLocation");
     var eventDesc = event.get("eventDesc");
+    eventDesc = "" + event.get("eventDesc") + " @ " + eventLocation;
 
     // Posting event to list view.
     if (eventUrl === "") {
@@ -222,12 +234,17 @@ var submitGoogle = function() {
 
     var googleID = $("#googleID").val();
 
-    if (googleID === "") {
+    if (confirm("This feature is currently under development.")) {
+        if (confirm("Keys for google calendars can be added to googlecals.js in the root folder")){
+            if (confirm("Keys are also stored in Parse for future reference") ){
+                alert("And the NSA...")
+            }
+        }
 
 
     } else {
 
-        //var googs = x;
+        
 
     }
 
