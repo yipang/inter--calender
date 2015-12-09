@@ -214,6 +214,7 @@
 
 		}
 		.modal-header {
+			color: #FFFFFF;
 			height:150px;
 			background-image: url("img/winter.jpg");
 			background-size: 100%;
