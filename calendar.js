@@ -428,6 +428,7 @@ var submitEvent = function() {
                     $("#eventDesc").val("");
                     //location.reload();
                     $('#calendar').fullCalendar( 'gotoDate', startYear + "-" + startMonth + "-" + startDay );
+                    $('#calendar').fullCalendar( 'refresh' );
                 },
                 error: function(anEvent, error) {
                     alert("ERROR: " + error.message);
